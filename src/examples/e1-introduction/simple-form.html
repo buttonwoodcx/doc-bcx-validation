@@ -1,0 +1,21 @@
+<template>
+
+  <form submit.trigger="save()">
+    <div class="form-field ${errors.name ? 'in-valid' : ''}">
+      <label>Name</label>
+      <input type="text" value.bind="model.name">
+      <div class="field-error" repeat.for="err of errors.name">${err}</div>
+    </div>
+
+    <div class="form-field ${errors.email ? 'in-valid' : ''}">
+      <label>Email</label>
+      <input type="text" value.bind="model.email">
+      <div class="field-error" repeat.for="err of errors.email">${err}</div>
+    </div>
+
+    <button type="submit" disabled.bind="isSaving || hasError">Save</button>
+  </form>
+
+  <p>The errors object:</p>
+  <pre>${errors | json:2}</pre>
+</template>

@@ -1,0 +1,30 @@
+.form-field label,
+.form-field input {
+  display: block;
+}
+
+.form-field input {
+  border: 1px solid #888;
+}
+
+.form-field.in-valid label {
+  color: #DD6163;
+}
+
+.form-field.in-valid input {
+  border-color: #DD6163;
+}
+
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.form-field.in-valid {
+  margin-bottom: 0;
+}
+
+.form-field .field-error {
+  font-size: .7rem;
+  color: #DD6163
+}
+
