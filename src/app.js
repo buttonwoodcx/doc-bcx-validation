@@ -13,15 +13,22 @@ export class App {
         route: 'intro', name: 'intro',
         title: 'Introduction',
         nav: true,
-        settings: {section: 'Tutorial'},
+        settings: {section: 'Tutorial by examples'},
         moduleId: 'tutorial/intro.html'
       },
       {
-        route: 'tutorial/basic', name: 'tutorial/basic',
-        title: 'Few basic validators',
+        route: 'tutorial/foreach-and-nested', name: 'tutorial/foreach-and-nested',
+        title: 'Foreach and nested',
         nav: true,
-        settings: {section: 'Tutorial'},
-        moduleId: 'tutorial/basic.html'
+        settings: {section: 'Tutorial by examples'},
+        moduleId: 'examples/e2-foreach-and-nested/index'
+      },
+      {
+        route: 'tutorial/wip', name: 'tutorial/wip',
+        title: '[WIP]',
+        nav: true,
+        settings: {section: 'Tutorial by examples'},
+        moduleId: 'wip.html'
       },
       {
         route: 'reference/standard-validators', name: 'reference/standard-validators',

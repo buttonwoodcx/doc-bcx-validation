@@ -1,3 +1,7 @@
 export function configure(config) {
-  config.globalResources(['./value-converters/json']);
+  config.globalResources([
+    './elements/form-field',
+    './value-converters/json',
+    './value-converters/number'
+  ]);
 }

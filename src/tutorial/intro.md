@@ -10,10 +10,7 @@ Enough talking, let's look at first example.
 
 <compose view-model="../examples/e1-introduction/index"></compose>
 
-1. We inject `Validation` to an Aurelia component.
-2. The `model` simply has two fields `name` and `email`.
-3. We build the validation function with simple rule: `{name: 'mandatory', email: ['mandatory', 'email']}`. More on the format shortly.
-4. In html template, we bind errors into view. The errors follows the structure of rule (not model, but most of the time your rule just follows structure of the model). More on errors shortly.
+I will explain bit more after this first example, I promise you won't see any excessive explanation from next page on.
 
 ## bcx-validation is generic, not an Aurelia plugin
 
@@ -41,8 +38,8 @@ Play the above example, you can see a basic structure of the `errors` object,
   &quot;email&quot;: [&quot;must not be empty&quot;]
 }" mode="js"></code-viewer></div>
 
-In technical term, the rule we use is a nested rule, the `errors` result is in nested format accordingly.
+In technical term, the rule in use is a nested rule, the `errors` result is in nested format accordingly.
 
-For every field, for instance `name` field, the `errors` of `name` is an array of failure messages. Here we only have one message, but there could be more errors messages if more validation rules were used on `name` field.
+For every field, for instance `name` field, the `errors` of `name` is an array of failure messages. Here we only have one message, but there could be more errors messages if more validation rules were applied on `name` field.
 
-Let's move on to [few basic validators](#/tutorial/basic).
+Next example [foreach-and-nested](#/tutorial/foreach-and-nested) showcases flexibility.

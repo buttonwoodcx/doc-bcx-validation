@@ -1,0 +1,71 @@
+<template>
+  <!-- from now on, use custom element <form-field> for all rest examples-->
+
+  <div class="demo-columns">
+    <form submit.trigger="save()">
+      <div class="demo-columns equal-size">
+        <div>
+          <form-field label="Name"
+                      value.bind="model.name"
+                      errors.bind="errors.name"></form-field>
+          <form-field label="Email"
+                      value.bind="model.email"
+                      errors.bind="errors.email"
+                      placeholder="optional"></form-field>
+          <form-field label="agree our term?"
+                      type="boolean"
+                      value.bind="model.agreeTerm"
+                      errors.bind="errors.agreeTerm"></form-field>
+
+          <p>Phone numbers <button click.trigger="addPhoneNumber()" if.bind="model.phoneNumbers.length < 3">+</button></p>
+
+          <table class="form-table">
+            <tr repeat.for="phoneNumber of model.phoneNumbers">
+              <td style="width: 40%;">
+                <form-field value.bind="phoneNumber.label"
+                            errors.bind="errors.phoneNumbers[$index].label"
+                            type="select"
+                            options.bind="phoneNumberTypes"></form-field>
+              </td>
+              <td colspan.bind="$first ? 2 : 1">
+                <form-field value.bind="phoneNumber.value"
+                            errors.bind="errors.phoneNumbers[$index].value"
+                            placeholder="phone number"></form-field>
+              </td>
+              <td if.bind="!$first">
+                <button click.trigger="removePhoneNumber($index)">X</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div style="width:150px">
+          <form-field label="Address line1"
+                      value.bind="model.address.line1"
+                      errors.bind="errors.address.line1"></form-field>
+          <form-field label="Address line2"
+                      value.bind="model.address.line2"
+                      errors.bind="errors.address.line2"></form-field>
+          <form-field label="Suburb"
+                      value.bind="model.address.suburb"
+                      errors.bind="errors.address.suburb"></form-field>
+          <form-field label="Postcode"
+                      value.bind="model.address.postcode"
+                      errors.bind="errors.address.postcode"
+                      placeholder="4 digits postcode"></form-field>
+          <form-field label="State (in Australia)"
+                      value.bind="model.address.state"
+                      type="select"
+                      options.bind="auStates"
+                      errors.bind="errors.address.state"></form-field>
+        </div>
+      </div>
+
+      <button type="submit" disabled.bind="isSaving || hasError">Save</button>
+    </form>
+
+    <div class="debug-errors">
+      <span>The errors object:</span>
+      <pre>${errors | json:2}</pre>
+    </div>
+  </div>
+</template>

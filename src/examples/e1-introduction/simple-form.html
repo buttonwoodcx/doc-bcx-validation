@@ -16,6 +16,8 @@
     <button type="submit" disabled.bind="isSaving || hasError">Save</button>
   </form>
 
-  <p>The errors object:</p>
-  <pre>${errors | json:2}</pre>
+  <div class="debug-errors">
+    <span>The errors object:</span>
+    <pre>${errors | json:2}</pre>
+  </div>
 </template>

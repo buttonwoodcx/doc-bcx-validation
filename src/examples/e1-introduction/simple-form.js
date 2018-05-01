@@ -4,7 +4,7 @@ import fakeSave from '../../utils/fake-save';
 
 @inject(Validation)
 export class SimpleForm {
-  triedAtLeastOnce = false;
+  triedSubmit = false;
   isSaving = false;
   model = {
     name: '',
@@ -13,17 +13,20 @@ export class SimpleForm {
 
   constructor(validation) {
     this.validate = validation.generateValidator({
-      name: 'mandatory',
+      name: 'mandatory', // short cut of {validate: 'mandatory'}
+      // chain of rules, 'mandatory' rule will skip rest of
+      // the chain when value is blank.
+      // short cut of [{validate: 'mandatory'}, {validate: 'email'}].
       email: ['mandatory', 'email']
     });
   }
 
   // we can use computedFrom for efficiency here
   // only because model is very simple
-  @computedFrom('triedAtLeastOnce', 'model.name', 'model.email')
+  @computedFrom('triedSubmit', 'model.name', 'model.email')
   get errors() {
-    // don't show err on empty form before user tries submit
-    if (this.triedAtLeastOnce) {
+    // avoid showing error before first submit
+    if (this.triedSubmit) {
       return this.validate(this.model);
     }
   }
@@ -35,7 +38,7 @@ export class SimpleForm {
 
   save() {
     if (this.isSaving) return;
-    this.triedAtLeastOnce = true;
+    this.triedSubmit = true;
     if (this.hasError) return;
 
     this.isSaving = true;

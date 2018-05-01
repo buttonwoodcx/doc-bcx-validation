@@ -1,30 +1,72 @@
-.form-field label,
-.form-field input {
+.form-field > label{
   display: block;
+  font-size: .85rem;
 }
 
-.form-field input {
+.form-field > input,
+.form-field > text-area,
+.form-field > select {
+  font-size: .85rem;
+  display: block;
   border: 1px solid #888;
+  width: 100%;
 }
 
-.form-field.in-valid label {
+.form-field.in-valid > label {
   color: #DD6163;
 }
 
-.form-field.in-valid input {
+.form-field.in-valid > input,
+.form-field.in-valid > text-area,
+.form-field.in-valid > select {
   border-color: #DD6163;
 }
 
 .form-field {
-  margin-bottom: 1rem;
+  display: block;
+  margin-bottom: .2rem;
 }
 
-.form-field.in-valid {
-  margin-bottom: 0;
-}
-
-.form-field .field-error {
+.form-field > .field-error {
   font-size: .7rem;
   color: #DD6163
 }
 
+.demo-columns {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.demo-columns > * {
+  flex: 0 1 auto;
+  min-width: 200px;
+  margin: 5px;
+}
+
+.demo-columns.equal-size > * {
+  flex: 1 0 0;
+  max-width: 300px;
+  min-width: 50px;
+}
+
+table.table-fixed-size {
+  table-layout: fixed;
+}
+
+.debug-errors {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.debug-errors pre {
+  font-size: .75rem;
+}
+
+table.form-table tr td {
+  vertical-align: text-top;
+}
+
+button {
+  font-size: .85rem;
+}
