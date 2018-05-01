@@ -8,9 +8,7 @@ Let's use term `validator` for an implementation of executing certain `rule`.
 
 To use `isTrue` `validator`, you write a rule like this:
 
-```javascript
-{validate: "isTrue"}
-```
+<div><code-viewer value="{validate: 'isTrue'}" mode="js"></code-viewer></div>
 
 Every `bcx-validation` rule is an object with reserved key `validate`, the value of the key is a string identifying an known `validator` to your validation instance.
 
@@ -18,19 +16,15 @@ Every `bcx-validation` rule is an object with reserved key `validate`, the value
 
 When it fails, it returns an array of error message.
 
-```javascript
-validation.validate(false, {validate: "isTrue"})
-// => ["must be true"]
-```
+<div><code-viewer value="validation.validate(false, {validate: 'isTrue'})
+// => ['must be true']" mode="js"></code-viewer></div>
 
 >  For consistency, even a single error message is wrapped in an array.
 
 When it passes, it returns undefined.
 
-```javascript
-validation.validate(true, {validate: "isTrue"})
-// => undefined
-```
+<div><code-viewer value="validation.validate(true, {validate: 'isTrue'})
+// => undefined" mode="js"></code-viewer></div>
 
 ## Optional value override and message override
 
@@ -38,19 +32,15 @@ Instead of testing the current value, you can override the value before it is be
 
 ### Override using expression
 
-```javascript
-validation.validate("lorem", {validate: "isTrue", value: "$value.length >= 8"});
-// => ["must be true"]
-```
+<div><code-viewer value="validation.validate('lorem', {validate: 'isTrue', value: '$value.length >= 8'});
+// => ['must be true']" mode="js"></code-viewer></div>
 
 The error message is odd, it doesn't reflect our intension, let's overwrite it.
 
-```javascript
-validation.validate("lorem", {validate: "isTrue",
-                              value: "$value.length >= 8",
-                              message: "must be at least 8 characters long"});
-// => ["must be at least 8 characters long"]
-```
+<div><code-viewer value="validation.validate('lorem', {validate: 'isTrue',
+                              value: '$value.length >= 8',
+                              message: 'must be at least 8 characters long'});
+// => ['must be at least 8 characters long']" mode="js"></code-viewer></div>
 
 This looks better.
 
@@ -68,12 +58,10 @@ Here `$value` is the first speical context variable that `bcx-validation` makes 
 
 In Buttonwoodcx, we mainly use expression. But for most of users, if you don't need expression, you can supply function for value override.
 
-```javascript
-validation.validate("lorem", {validate: "isTrue",
+<div><code-viewer value="validation.validate('lorem', {validate: 'isTrue',
                               value: value => value.length >= 8,
-                              message: "must be at least 8 characters long"});
-// => ["must be at least 8 characters long"]
-```
+                              message: 'must be at least 8 characters long'});
+// => ['must be at least 8 characters long']" mode="js"></code-viewer></div>
 
 > You might noticed the function we used for value override is not quite safe, when value is null/undefined, the above code raises exception on `value.length`. The safer way is to do `value => value && value.length >= 8`.
 
@@ -85,40 +73,30 @@ If you are interested on using expression, please read through [bcx-expression-e
 
 `bcx-validation` uses [lodash](https://github.com/lodash/lodash) extensively. For convenience, lodash is available as a helper to any expression used in `bcx-validation`. So instead of `"$value.length >= 8"`, you can also write `"_.size($value) >= 8"`.
 
-Let's look back on the message override again, the message you provided is actually evaluated by `bcx-expression-evaluator` in es6 string interpolation mode. `"must be at least 8 characters long"` is actually like es6
-
-```
-`must be at least 8 characters long`
-```
+Let's look back on the message override again, the message you provided is actually evaluated by `bcx-expression-evaluator` in es6 string interpolation mode. `"must be at least 8 characters long"` is actually like es6 `` `must be at least 8 characters long` ``.
 
 It means you can do this:
 
-```javascript
-validation.validate("lorem", {validate: "isTrue",
-                              value: "$value.length >= 8",
-                              message: '"\${$value}" is less than 8 characters long'});
-// => ['"lorem" is less than 8 characters long']
-```
+<div><code-viewer value="validation.validate('lorem', {validate: 'isTrue',
+                              value: '$value.length >= 8',
+                              message: '&quot;\${$value}&quot; is less than 8 characters long'});
+// => ['&quot;lorem&quot; is less than 8 characters long']" mode="js"></code-viewer></div>
 
 You have heard `bcx-validation` treats expression and function almost exchangeable. It means you can do this:
 
-```javascript
-validation.validate("lorem", {validate: "isTrue",
-                              value: "$value.length >= 8",
-                              message: value => `"\${value}" is less than 8 characters long`});
-// => ['"lorem" is less than 8 characters long']
-```
+<div><code-viewer value="validation.validate('lorem', {validate: 'isTrue',
+                              value: '$value.length >= 8',
+                              message: value => `&quot;\${value}&quot; is less than 8 characters long`});
+// => ['&quot;lorem&quot; is less than 8 characters long']" mode="js"></code-viewer></div>
 
 ### Override using regex
 
 Besides expression and function, you can also use regex in value override.
 
-```javascript
-validation.validate("abc", {validate: "isTrue",
-                              value: /\d/,
-                              message: "must contain some digits"});
-// => ["must contain some digits"]
-```
+<div><code-viewer value="validation.validate('abc', {validate: 'isTrue',
+                            value: /\d/,
+                            message: 'must contain some digits'});
+// => ['must contain some digits']" mode="js"></code-viewer></div>
 
 When you use regex, it behaves as value override with function `value => /\d/.test(value)`.
 
@@ -132,10 +110,8 @@ When you use regex, it behaves as value override with function `value => /\d/.te
 
 When you don't need to override either value or error message. You can use the bare validator name as a short-cut.
 
-```javascript
-validation.validate(false, "isTrue")
-// => ["must be true"]
-```
+<div><code-viewer value="validation.validate(false, 'isTrue')
+// => ['must be true']" mode="js"></code-viewer></div>
 
 > In the example showed in [introduction](#/reference/intro), `"email"`, `"mandatory"` etc do not have the full shape of a rule. They are aliases, the full form of `"email"` is still `{validate: "email"}`.
 

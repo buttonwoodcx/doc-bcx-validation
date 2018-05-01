@@ -1,20 +1,21 @@
 # foreach transformer
 
+`foreach` is a feature that distance `bcx-validation` from other alternatives. It made easy to validate dynamic models.
+
 The example in [introduction](#/reference/intro) is a good example of `foreach` transformer. It uses item index as the error key, that's default behaviour of `foreach` transformer.
 
 ## Error key override
 
 Let's use id as the error key, this makes it easier to inspect error object.
 
-```javascript
-var rule = {
+<div><code-viewer value="var rule = {
   customers: {
     foreach: {
-      name: ["mandatory", "unique"],
-      age: ["notMandatory", {validate: 'number', min: 16}],
-      id: ["mandatory", "unique"]
+      name: ['mandatory', 'unique'],
+      age: ['notMandatory', {validate: 'number', min: 16}],
+      id: ['mandatory', 'unique']
     },
-    key: "id"
+    key: 'id'
   }
 };
 
@@ -30,19 +31,18 @@ var model = {
 validation.validate(model, rule);
 /* =>
 {
-  "customers": {
-    "ab": {
-      "name": ["must be unique"],
-      "age": ["must be at least 16"],
-      "id": ["must be unique"]
+  customers: {
+    ab: {
+      name: ['must be unique'],
+      age: ['must be at least 16'],
+      id: ['must be unique']
     },
-    "ad": {
-      "name": ["must not be empty"]
+    ad: {
+      name: ['must not be empty']
     }
   }
 }
-*/
-```
+*/" mode="js"></code-viewer></div>
 
 > Note since the id "ab" is not unique, the error only appears once. If you don't use `key: "id"` error key override, the error will appears twice, one on "1", another on "2".
 
@@ -56,42 +56,40 @@ Underneath, for every item in the model array, `foreach` transformer creates new
 
 For example, when `foreach` is validating property "name" of the first item `{id: 'aa', name: 'Arm'}`, it has following context variables.
 
-```
-$value: "Arm"
-$propertyPath: ["name"]
-$this: {id: 'aa', name: 'Arm'}
-$parent: {customers: [...all 4...]}
+<div><code-viewer value="{
+  $value: 'Arm'
+  $propertyPath: ['name']
+  $this: {id: 'aa', name: 'Arm'}
+  $parent: {customers: [ /* all 4 */ ]}
 
-// introduced by foreach
-$neighbours: [{id: 'ab', name: 'Bob'}, {id: 'ab', name: 'Bob', age: 15}, {id: 'ad', name: '', age: 18}]
-$neighbourValues: ['Bob', 'Bob', '']
-$index: 0
-$first: true
-$last: false
-```
+  // introduced by foreach
+  $neighbours: [{id: 'ab', name: 'Bob'}, {id: 'ab', name: 'Bob', age: 15}, {id: 'ad', name: '', age: 18}]
+  $neighbourValues: ['Bob', 'Bob', '']
+  $index: 0
+  $first: true
+  $last: false
+}" mode="js"></code-viewer></div>
 
-> $propertyPath is an array of property names, it can have multiple items (like `['address', 'line1']`) if it's a deep nested validation. Internally, we use it as lodash property path. You may wonder why we pick the complex array form `['address', 'line1']`, not the simple dot notation form `'address.line1'`. Lodash supports both forms, but for some property name like "x.y", dot notation doesn't work (`a.x.y` does not mean `a["x.y"]`).
+> `$propertyPath` is an array of property names, it can have multiple items (like `['address', 'line1']`) if it's a deep nested validation. Internally, we use it as lodash property path. You may wonder why we pick the complex array form `['address', 'line1']`, not the simple dot notation form `'address.line1'`. Lodash supports both forms, but for some property name like "x.y", dot notation doesn't work (`a.x.y` does not mean `a["x.y"]`).
 
-> $this is the new context created by foreach, which is the current item.
+> `$this` is the new context created by foreach, which is the current item.
 
-> $parent is the outer/parent context.
+> `$parent` is the outer/parent context.
 
-> $neighbours are all the siblings, BUT DO NOT INCLUDE $this itself.
+> `$neighbours` are all the siblings, BUT DO NOT INCLUDE $this itself.
 
-> $neighbourValues are the relevant property values on $neighbours, they are same as `_.map($neighbours, _.property($propertyPath))` when $propertyPath is not empty. When $propertyPath is empty (explained later in "Use foreach to validate simple array"), $neighbourValues are same as $neighbours.
+> `$neighbourValues` are the relevant property values on $neighbours, they are same as `_.map($neighbours, _.property($propertyPath))` when $propertyPath is not empty. When $propertyPath is empty (explained later in "Use foreach to validate simple array"), $neighbourValues are same as $neighbours.
 
-> $index, $first, $last are for the position of current item. They are similar to what aurelia repeater provides.
+> `$index`, `$first`, `$last` are for the position of current item. They are similar to what aurelia repeater provides.
 
 > For people with aurelia experience, note we don't have $even, $odd context variables in foreach. We don't provide them to avoid conflict with our standard "number" validator which supports $even/$odd options.
 
 Let's have a look how we defined standard "unique" validator.
 
-```javascript
-// copied from standard-validators.js
+<div><code-viewer value="// copied from standard-validators.js
 // unique. need to access neighbours
 // option items is evaluated from current scope
-validation.addValidator("unique", {validate: "notIn", "items.bind": "$neighbourValues", message: "must be unique"});
-```
+validation.addValidator('unique', {validate: 'notIn', 'items.bind': '$neighbourValues', message: 'must be unique'});" mode="js"></code-viewer></div>
 
 "unique" validator reuses "notIn" validator, and use $neighbourValues in "notIn"'s "items" option.
 
@@ -99,15 +97,13 @@ validation.addValidator("unique", {validate: "notIn", "items.bind": "$neighbourV
 
 Let's do another exercise around foreach context variables. Let's validate, that in a group of people, there are only certain maximum number of leaders.
 
-```javascript
-validation.addValidator("maxLeader", {
-  if: "$this.leader",
-  validate: "number",
-  value: "_($neighbours).filter({leader: true}).size()",
-  "max.bind": "$max - 1",
-  message: "Only maximum \${$max} leaders allowed"
-});
-```
+<div><code-viewer value="validation.addValidator('maxLeader', {
+  if: '$this.leader',
+  validate: 'number',
+  value: '_($neighbours).filter({leader: true}).size()',
+  'max.bind': '$max - 1',
+  message: 'Only maximum \${$max} leaders allowed'
+});" mode="js"></code-viewer></div>
 
 We reuse "number" validator, when current person is a leader, checks the count of all neighbour leaders, the number can not exceed (max - 1).
 
@@ -119,11 +115,10 @@ We reuse "number" validator, when current person is a leader, checks the count o
 
 Let's try out our "maxLeader" validator.
 
-```javascript
-var validate2Leaders = validation.generateValidator({
+<div><code-viewer value="var validate2Leaders = validation.generateValidator({
   foreach: {
-    name: ["mandatory", "unique"],
-    leader: {validate: "maxLeader", max: 2}
+    name: ['mandatory', 'unique'],
+    leader: {validate: 'maxLeader', max: 2}
   }
 });
 
@@ -145,15 +140,13 @@ validate2Leaders([
   {name: 'C'},
   {name: 'D'},
 ]);
-// => undefined
-```
+// => undefined" mode="js"></code-viewer></div>
 
 Because the way we design "maxLeader", we can use it on other property instead of "leader" property.
 
-```javascript
-var validate2LeadersOnNameProperty = validation.generateValidator({
+<div><code-viewer value="var validate2LeadersOnNameProperty = validation.generateValidator({
   foreach: {
-    name: ["mandatory", "unique", {validate: "maxLeader", max: 2}],
+    name: ['mandatory', 'unique', {validate: 'maxLeader', max: 2}],
   }
 });
 
@@ -167,18 +160,16 @@ validate2LeadersOnNameProperty([
 { '0': { name: [ 'Only maximum 2 leaders allowed' ] },
   '1': { name: [ 'Only maximum 2 leaders allowed' ] },
   '2': { name: [ 'Only maximum 2 leaders allowed' ] } }
-*/
-```
+*/" mode="js"></code-viewer></div>
 
 Let's show you another version of "maxLeader". This time, assume it's validating "leader" property.
 
-```javascript
-validation.addValidator("maxLeader", {
-  if: "$value", // current item.leader value
-  validate: "number",
-  value: "_($neighbourValues).compact().size()", // _.compact removes false leader
-  "max.bind": "$max - 1",
-  message: "Cannot exceed maximum \${$max} leaders"
+<div><code-viewer value="validation.addValidator('maxLeader', {
+  if: '$value', // current item.leader value
+  validate: 'number',
+  value: '_($neighbourValues).compact().size()', // _.compact removes false leader
+  'max.bind': '$max - 1',
+  message: 'Cannot exceed maximum \${$max} leaders'
 });
 
 validate2Leaders([
@@ -187,7 +178,7 @@ validate2Leaders([
   {name: 'C', leader: true},
   {name: 'D'},
 ]);
-/* => validating on "leader" still works
+/* => validating on 'leader' still works
 { '0': { leader: [ 'Cannot exceed maximum 2 leaders' ] },
   '1': { leader: [ 'Cannot exceed maximum 2 leaders' ] },
   '2': { leader: [ 'Cannot exceed maximum 2 leaders' ] } }
@@ -199,36 +190,34 @@ validate2LeadersOnNameProperty([
   {name: 'C', leader: true},
   {name: 'D'},
 ]);
-/* => validating on "name", oops, all names are truthy
+/* => validating on 'name', oops, all names are truthy
 { '0': { name: [ 'Cannot exceed maximum 2 leaders' ] },
   '1': { name: [ 'Cannot exceed maximum 2 leaders' ] },
   '2': { name: [ 'Cannot exceed maximum 2 leaders' ] },
   '3': { name: [ 'Cannot exceed maximum 2 leaders' ] } }
-*/
-```
+*/" mode="js"></code-viewer></div>
 
 An example to show `foreach` and `switch` work nicely together.
 
-```javascript
-var rule = {
+<div><code-viewer value="var rule = {
   users: {
     foreach: {
       switch: 'type',
       cases: {
         customer: {
-          email: ["notMandatory", "email"],
-          phone: ["notMandatory", "unique"],
-          name: ["mandatory", "unique"]
+          email: ['notMandatory', 'email'],
+          phone: ['notMandatory', 'unique'],
+          name: ['mandatory', 'unique']
         },
         dealer: {
-          dealerId: ["mandatory", "unique"],
-          phone: ["mandatory", "unique"],
-          email: ["mandatory", "email"],
-          name: ["mandatory", "unique"]
+          dealerId: ['mandatory', 'unique'],
+          phone: ['mandatory', 'unique'],
+          email: ['mandatory', 'email'],
+          name: ['mandatory', 'unique']
         }
       }
     },
-    key: "id"
+    key: 'id'
   }
 };
 
@@ -245,50 +234,47 @@ var model = {
 
 validation.validate(model, rule);
 /* =>
-{ "users": {
-    "c02": { "name": ["must be unique"] },
-    "c03": { "email": ["not a valid email"],
-             "name": ["must be unique"] },
-    "d01": { "dealerId": ["must not be empty"],
-             "phone": ["must not be empty"] },
-    "d02": { "dealerId": ["must be unique"],
-             "phone": ["must be unique"],
-             "email": ["not a valid email"],
-             "name": ["must be unique"] },
-    "d03": { "dealerId": ["must be unique"],
-             "phone": ["must be unique"],
-             "name": ["must be unique"] } } }
-*/
-```
+{ 'users': {
+  'c02': { 'name': ['must be unique'] },
+  'c03': { 'email': ['not a valid email'],
+           'name': ['must be unique'] },
+  'd01': { 'dealerId': ['must not be empty'],
+           'phone': ['must not be empty'] },
+  'd02': { 'dealerId': ['must be unique'],
+           'phone': ['must be unique'],
+           'email': ['not a valid email'],
+           'name': ['must be unique'] },
+  'd03': { 'dealerId': ['must be unique'],
+           'phone': ['must be unique'],
+           'name': ['must be unique'] } } }
+*/" mode="js"></code-viewer></div>
 
 Chain rule works under `foreach` too. Following rule works same as previous one.
 
-```javascript
-var rule = {
+<div><code-viewer value="var rule = {
   users: {
     foreach: [
       // generic rule on every customer/dealer
       {
-        name: ["mandatory", "unique"],
-        email: ["notMandatory", "email"],
-        phone: ["notMandatory", "unique"]
+        name: ['mandatory', 'unique'],
+        email: ['notMandatory', 'email'],
+        phone: ['notMandatory', 'unique']
       },
       // strict rule on dealer
       {
         switch: 'type',
         cases: {
           dealer: {
-            dealerId: ["mandatory", "unique"],
-            phone: ["mandatory", "unique"],
-            email: ["mandatory", "email"],
+            dealerId: ['mandatory', 'unique'],
+            phone: ['mandatory', 'unique'],
+            email: ['mandatory', 'email'],
           }
         }
       }
     ],
-    key: "id"
+    key: 'id'
   }
-};
-```
+};" mode="js"></code-viewer></div>
 
 > Note we use rule for "customer" as the first one in chain. Second one only validating "dealer". Since all rules in "dealer" are stricter, the final result generated by `bcx-validation` will be nicely merged.
 
@@ -298,19 +284,15 @@ var rule = {
 
 You can use `foreach` to validate simple array (not array of complex object).
 
-```javascript
-validation.validate(["xx", "ab@test.com", "-xi@ a"], {foreach: "email"});
-// => { '0': [ 'not a valid email' ], '2': [ 'not a valid email' ] }
-```
+<div><code-viewer value="validation.validate(['xx', 'ab@test.com', '-xi@ a'], {foreach: 'email'});
+// => { '0': [ 'not a valid email' ], '2': [ 'not a valid email' ] }" mode="js"></code-viewer></div>
 #### Use foreach to validate object
 
 `foreach` is designed to validate array, but you still can use it to validate a normal object. Obviously $index, $first, $last do not make sense in this use case.
 
-```javascript
-validation.validate({meta: {field1: "  ", field2: "hello"}},
-                    {meta: {foreach: "mandatory"}});
-// => { meta: { field1: [ 'must not be empty' ] } }
-```
+<div><code-viewer value="validation.validate({meta: {field1: '  ', field2: 'hello'}},
+                    {meta: {foreach: 'mandatory'}});
+// => { meta: { field1: [ 'must not be empty' ] } }" mode="js"></code-viewer></div>
 
 ## `foreach` with rule factory function
 
@@ -326,29 +308,27 @@ We learnt before that a raw function is treated as raw validator implementation.
 
 The above `foreach` + `switch` example can be rewritten as:
 
-```javascript
-var rule = {
+<div><code-viewer value="var rule = {
   users: {
     foreach: (user) => {
       switch(user.type) {
         case 'customer':
           return {
-            email: ["notMandatory", "email"],
-            phone: ["notMandatory", "unique"],
-            name: ["mandatory", "unique"]
+            email: ['notMandatory', 'email'],
+            phone: ['notMandatory', 'unique'],
+            name: ['mandatory', 'unique']
           };
         case 'dealer':
           return {
-            dealerId: ["mandatory", "unique"],
-            phone: ["mandatory", "unique"],
-            email: ["mandatory", "email"],
-            name: ["mandatory", "unique"]
+            dealerId: ['mandatory', 'unique'],
+            phone: ['mandatory', 'unique'],
+            email: ['mandatory', 'email'],
+            name: ['mandatory', 'unique']
           };
       }
     },
-    key: "id"
+    key: 'id'
   }
-};
-```
+};" mode="js"></code-viewer></div>
 
 Let's move on to [add helper](#/reference/add-helper-for-expression).

@@ -4,8 +4,7 @@
 
 We have learnt `if` transformer in conditional validation. Let's define a new `ifNot` transformer by reusing `if` transformer.
 
-```javascript
-const ifNotTester = rule => (rule && _.isString(rule.ifNot) && !_.isEmpty(_.omit(rule, 'ifNot')));
+<div><code-viewer value="const ifNotTester = rule => (rule && _.isString(rule.ifNot) && !_.isEmpty(_.omit(rule, 'ifNot')));
 
 validation.addTransformer(
   ifNotTester,
@@ -13,8 +12,7 @@ validation.addTransformer(
     const {ifNot, ...others} = rule;
     return {if: `!(\${ifNot})`, ...others};
   }
-);
-```
+);" mode="js"></code-viewer></div>
 
 The first argument for addTransformer is a tester function, it tests whether a rule can be processed by `ifNot` transformer. You would like to design the tester as defensive as possible to avoid false hit.
 
@@ -24,19 +22,17 @@ The second argument is the transformer function itself, with the rule as input, 
 
 Here is another example of transformer. This is how we support bare regex as validation rule.
 
-```javascript
-validation.validate('ab', /[A-Z]/); // => ['invalid format']
+<div><code-viewer value="validation.validate('ab', /[A-Z]/); // => ['invalid format']
 
-// implemented by this transformer
+// the bare regex validator is implemented by following code
 // copied from standard-validators.js
 // transform regex
 validation.addTransformer(
   _.isRegExp,
-  rule => ({validate: "isTrue", value: rule, message: 'invalid format'})
-);
-```
+  rule => ({validate: 'isTrue', value: rule, message: 'invalid format'})
+);" mode="js"></code-viewer></div>
 
-In summary, for flexibility, we use transformer to accept rule not matching the shape requirement (`{validate: "validatorName", ...}`). Have a look of all the transformers defined in [standard validators](https://github.com/buttonwoodcx/bcx-validation/blob/master/src/standard-validators.js), you should able to understand all of them except `switch` and `foreach` transformers.
+In summary, for flexibility, we use transformer to accept rule not matching the shape requirement (`{validate: "validatorName", ...}`). Have a look of all the transformers defined in [standard validators](#/reference/standard-validators), you should able to understand all of them except `switch` and `foreach` transformers.
 
 > When `bcx-validation` resolves a rule, it tests against all transformers before trying any validator implementations. That's how `{if: 'condition', validate: 'isTrue'}` is processed by `if` transformer first. If `bcx-validation` tries validators before transformers, `{if: 'condition', validate: 'isTrue'}` will be wrongly treated as "isTrue" validator with option "if" with static value "condition".
 

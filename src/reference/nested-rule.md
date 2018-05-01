@@ -1,47 +1,41 @@
 ## Nested rule
 
-```javascript
-var rule = {
-  name: ["mandatory", {validate: /^[A-Z]/, message: "must start with capital letter"}],
-  age: ["notMandatory", {validate: "number", min: 16}]
+<div><code-viewer value="var rule = {
+  name: ['mandatory', {validate: /^[A-Z]/, message: 'must start with capital letter'}],
+  age: ['notMandatory', {validate: 'number', min: 16}]
 };
 
-validation.validate({name: "", age: 18}, rule);
+validation.validate({name: '', age: 18}, rule);
 // => { name: [ 'must not be empty' ] }
 
-validation.validate({name: "bob"}, rule);
+validation.validate({name: 'bob'}, rule);
 // => { name: [ 'must start with capital letter' ] }
 
-validation.validate({name: "Bob", age: 12}, rule);
+validation.validate({name: 'Bob', age: 12}, rule);
 // => { age: [ 'must be at least 16' ] }
 
-validation.validate({name: "bob", age: 12}, rule);
-// => { name: [ 'must start with capital letter' ], age: [ 'must be at least 16' ] }
-```
+validation.validate({name: 'bob', age: 12}, rule);
+// => { name: [ 'must start with capital letter' ], age: [ 'must be at least 16' ] }" mode="js"></code-viewer></div>
 
 As expected, the result is nested too.
 
 Since a nested rule is considered a rule, you can put it in a chain.
 
-```javascript
-validation.validate({name: "bob", age: 12}, [rule]);
-// => { name: [ 'must start with capital letter' ], age: [ 'must be at least 16' ] }
-```
+<div><code-viewer value="validation.validate({name: 'bob', age: 12}, [rule]);
+// => { name: [ 'must start with capital letter' ], age: [ 'must be at least 16' ] }" mode="js"></code-viewer></div>
 
-You can chain two nested rule together, `bcx-validation` takes care of merging result.
+### Chain multiple nested rule together, `bcx-validation` takes care of merging result
 
-```javascript
-validation.validate({name: "", age: 12}, [
+<div><code-viewer value="validation.validate({name: '', age: 12}, [
   {
-    name: ["mandatory"]
+    name: ['mandatory'] // {name: 'mandatory'} without array wrapper works too
   },
   {
-    name: ["mandatory", {validate: /^[A-Z]/, message: "must start with capital letter"}],
-    age: ["notMandatory", {validate: "number", min: 16}]
+    name: ['mandatory', {validate: /^[A-Z]/, message: 'must start with capital letter'}],
+    age: ['notMandatory', {validate: 'number', min: 16}]
   }
 ]);
-// => { name: [ 'must not be empty' ], age: [ 'must be at least 16' ] }
-```
+// => { name: [ 'must not be empty' ], age: [ 'must be at least 16' ] }" mode="js"></code-viewer></div>
 
 > Note `bcx-validation` avoided the duplication of error message "must not be empty" on property "name".
 

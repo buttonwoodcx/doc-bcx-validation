@@ -24,11 +24,18 @@ export class App {
         moduleId: 'tutorial/basic.html'
       },
       {
-        route: 'reference/intro', name: 'reference/intro',
-        title: 'Introduction',
+        route: 'reference/standard-validators', name: 'reference/standard-validators',
+        title: 'Standard validators',
+        nav: true,
+        settings: {section: 'Standard validators'},
+        moduleId: 'reference/standard-validators.html'
+      },
+      {
+        route: 'reference/overview', name: 'reference/overview',
+        title: 'Overview',
         nav: true,
         settings: {section: 'Reference'},
-        moduleId: 'reference/intro.html'
+        moduleId: 'reference/overview.html'
       },
       {
         route: 'reference/basic-shape-of-a-rule', name: 'reference/basic-shape-of-a-rule',
@@ -50,6 +57,13 @@ export class App {
         nav: true,
         settings: {section: 'Reference'},
         moduleId: 'reference/chain-of-rules.html'
+      },
+      {
+        route: 'reference/if-transformer', name: 'reference/if-transformer',
+        title: 'Conditional validation',
+        nav: true,
+        settings: {section: 'Reference'},
+        moduleId: 'reference/if-transformer.html'
       },
       {
         route: 'reference/validator-composition', name: 'reference/validator-composition',

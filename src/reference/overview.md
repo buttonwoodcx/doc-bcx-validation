@@ -1,11 +1,12 @@
-# Introduction
+# Overview
 
-This is the old document for `bcx-validation`, it doesn't talk about Aurelia at all. It's a mathematical walk-through of the design.
+This reference doesn't talk about Aurelia at all. It's a mathematical walk-through of the design.
 
 Depending on whether my writing matching your styles of think, this tutorial may help you to better understand the design.
 
 ---
 
+# bcx-validation
 Another validation library to meet our own need.
 
 Why not just use some existing validation tool?

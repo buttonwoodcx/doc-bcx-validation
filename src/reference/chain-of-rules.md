@@ -2,43 +2,37 @@
 
 You can use multiple rules to validate a value. `bcx-validation` will merge all error messages into one single array.
 
-```javascript
-validation.validate("lorem", [
- {validate: /[a-z]/, message: "must contain lower case letter"},
- {validate: /[A-Z]/, message: "must contain upper case letter"},
- {validate: /\d/, message: "must contain digit"},
+<div><code-viewer value="validation.validate('lorem', [
+ {validate: /[a-z]/, message: 'must contain lower case letter'},
+ {validate: /[A-Z]/, message: 'must contain upper case letter'},
+ {validate: /\d/, message: 'must contain digit'},
 ]);
-// => ['must contain upper case letter', 'must contain digit']
-```
+// => ['must contain upper case letter', 'must contain digit']" mode="js"></code-viewer></div>
 
 When `bcx-validation` validates the value, you have chance to break the chain (stop it early) using reserved keys `stopValidationChainIfFail` and `stopValidationChainIfPass`. Here the 3rd rule is skipped because of failure on the 2nd rule.
 
-```javascript
-validation.validate("lorem", [
- {validate: /[a-z]/, message: "must contain lower case letter", stopValidationChainIfFail: true},
- {validate: /[A-Z]/, message: "must contain upper case letter", stopValidationChainIfFail: true},
- {validate: /\d/, message: "must contain digit"},
+<div><code-viewer value="validation.validate('lorem', [
+ {validate: /[a-z]/, message: 'must contain lower case letter', stopValidationChainIfFail: true},
+ {validate: /[A-Z]/, message: 'must contain upper case letter', stopValidationChainIfFail: true},
+ {validate: /\d/, message: 'must contain digit'},
 ]);
-// => ['must contain upper case letter']
-```
+// => ['must contain upper case letter']" mode="js"></code-viewer></div>
 
 `bcx-validation` also provides three validators to support easy early break of chain. `passImmediatelyIf`, `skipImmediatelyIf`, `failImmediatelyIf`.
 
-```javascript
-var rule = [
-  {validate: "passImmediatelyIf", value: "$value == 'NA'"},
-  {validate: "failImmediatelyIf", value: "_.isEmpty($value)", message: "must not be empty"},
-  {validate: /[a-z]/, message: "must contain lower case letter", stopValidationChainIfFail: true},
-  {validate: /[A-Z]/, message: "must contain upper case letter", stopValidationChainIfFail: true},
-  {validate: /\d/, message: "must contain digit"},
+<div><code-viewer value="var rule = [
+  {validate: 'passImmediatelyIf', value: &quot;$value == 'NA'&quot;},
+  {validate: 'failImmediatelyIf', value: '_.isEmpty($value)', message: 'must not be empty'},
+  {validate: /[a-z]/, message: 'must contain lower case letter', stopValidationChainIfFail: true},
+  {validate: /[A-Z]/, message: 'must contain upper case letter', stopValidationChainIfFail: true},
+  {validate: /\d/, message: 'must contain digit'},
 ];
 
-validation.validate("NA", rule);
+validation.validate('NA', rule);
 // => undefined
 
-validation.validate("", rule);
-// => ['must not be empty']
-```
+validation.validate('', rule);
+// => ['must not be empty']" mode="js"></code-viewer></div>
 
 Here the first validation checks if value is `"NA"`, stop the validation chain immediately and return as passed. The second validation checks if value is empty, stop the validation chain immediately and fail with message "must not be empty".
 
@@ -48,65 +42,20 @@ Here the first validation checks if value is `"NA"`, stop the validation chain i
 
 Since chain of rules is considered a rule, you can use sub-chain inside a chain. Beware early break of sub-chain doesn't affect the outer chain. Here the last rule was still checked after early break in previous sub-chain.
 
-```javascript
-var rule = [
-  {validate: "passImmediatelyIf", value: "$value == 'NA'"},
-  {validate: "failImmediatelyIf", value: "_.isEmpty($value)", message: "must not be empty"},
+<div><code-viewer value="var rule = [
+  {validate: 'passImmediatelyIf', value: &quot;$value == 'NA'&quot;},
+  {validate: 'failImmediatelyIf', value: '_.isEmpty($value)', message: 'must not be empty'},
   [
-    {validate: /[a-z]/, message: "must contain lower case letter", stopValidationChainIfFail: true},
-    {validate: /[A-Z]/, message: "must contain upper case letter", stopValidationChainIfFail: true},
-    {validate: /\d/, message: "must contain digit"}
+    {validate: /[a-z]/, message: 'must contain lower case letter', stopValidationChainIfFail: true},
+    {validate: /[A-Z]/, message: 'must contain upper case letter', stopValidationChainIfFail: true},
+    {validate: /\d/, message: 'must contain digit'}
   ],
-  {validate: /_/, message: "must contain underscore"}
+  {validate: /_/, message: 'must contain underscore'}
 ];
 
-validation.validate("a", rule);
-// => [ 'must contain upper case letter', 'must contain underscore' ]
-```
+validation.validate('a', rule);
+// => [ 'must contain upper case letter', 'must contain underscore' ]" mode="js"></code-viewer></div>
 
 With the introduction of chain control, it looks getting complicated. But fortunately, you will rarely use any of `passImmediatelyIf`, `skipImmediatelyIf`, `failImmediatelyIf`, `stopValidationChainIfFail` or `stopValidationChainIfPass`. They are meant to be used in defining new validator with composition.
 
-#### Conditional validation (if transformer)
-Before we get into composition, let's have a look of conditional validation.
-
-```javascript
-validation.validate("NA", {if: "$value != 'NA'", validate: /id\d+/, message: "invalid id format"});
-// => undefined
-validation.validate("xx", {if: "$value != 'NA'", validate: /id\d+/, message: "invalid id format"});
-// => [ 'invalid id format' ]
-validation.validate("id23", {if: "$value != 'NA'", validate: /id\d+/, message: "invalid id format"});
-// => undefined
-```
-
-> We only support expression in `if` condition check, not function. This is to support an edge case that user really want to validate a property named "if" in the model. We will show example of this edge case in [nested rule](#/reference/nested-rule).
-
-Conditional validation was implemented as `if` transformer. When `bcx-validation` sees that conditional rule above, it transforms it into:
-
-```javascript
-validation.validate("NA", [
-  {validate: "skipImmediatelyIf", value: "!($value != 'NA')"},
-  {validate: /id\d+/, message: "invalid id format"}
-]);
-```
-
-You can see we will rarely use `skipImmediatelyIf` directly, `if` transformer does the job, and makes the whole rule short and neat.
-
-`if` transformer can wrap chain of rules too. Here is a rewrite of the previous chain rule.
-
-```javascript
-var rule = {
-  if: "$value != 'NA'",
-  group: [
-    // 'mandatory' validator is almost same as {validate: "failImmediatelyIf", value: "_.isEmpty($value)", message: "must not be empty"},
-    "mandatory",
-    [
-      {validate: /[a-z]/, message: "must contain lower case letter", stopValidationChainIfFail: true},
-      {validate: /[A-Z]/, message: "must contain upper case letter", stopValidationChainIfFail: true},
-      {validate: /\d/, message: "must contain digit"}
-    ],
-    {validate: /_/, message: "must contain underscore"}
-  ]
-};
-```
-
-Let's move on to [validator composition](#/reference/validator-composition).
+Let's move on to [conditional validation](#/reference/if-transformer).
