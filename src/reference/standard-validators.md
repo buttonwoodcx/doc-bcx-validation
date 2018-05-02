@@ -1,6 +1,6 @@
 # Standard validators
 
-Readable source code, from `bcx-validation/src/standard-validators.js`
+Readable source code. It's part of [`bcx-validation/src/standard-validators.js`](https://github.com/buttonwoodcx/bcx-validation/blob/master/src/standard-validators.js)
 
 <div><code-viewer value="function isBlank(v) {
   if (_.isNull(v) || _.isUndefined(v) || _.isNaN(v)) return true;

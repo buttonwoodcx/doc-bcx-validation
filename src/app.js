@@ -34,8 +34,15 @@ export class App {
         route: 'reference/standard-validators', name: 'reference/standard-validators',
         title: 'Standard validators',
         nav: true,
-        settings: {section: 'Standard validators'},
+        settings: {section: 'Standard features'},
         moduleId: 'reference/standard-validators.html'
+      },
+      {
+        route: 'reference/standard-transformers', name: 'reference/standard-transformers',
+        title: 'Standard transformers',
+        nav: true,
+        settings: {section: 'Standard features'},
+        moduleId: 'reference/standard-transformers.html'
       },
       {
         route: 'reference/overview', name: 'reference/overview',
