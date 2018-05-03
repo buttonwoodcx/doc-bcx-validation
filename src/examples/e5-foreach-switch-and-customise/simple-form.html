@@ -1,0 +1,39 @@
+<template>
+  <div class="demo-columns equal-size">
+    <form submit.trigger="save()">
+      Users
+      <button if.bind="users.length < 5"
+              click.trigger="addUser()">+</button>
+      <table class="form-table">
+        <tr repeat.for="user of users">
+          <td style="width: 35%;">
+            <form-field type="select"
+                        value.bind="user.type"
+                        options.bind="typeOptions"
+                        errors.bind="errors.type"></form-field>
+          </td>
+          <td>
+            <form-field value.bind="user.name"
+                        errors.bind="errors[user.id].name"
+                        placeholder="Name"></form-field>
+          </td>
+          <td colspan.bind="$first ? 2 : 1">
+            <form-field value.bind="user.phone"
+                        errors.bind="errors[user.id].phone"
+                        placeholder="Phone"></form-field>
+          </td>
+          <td if.bind="!$first">
+            <button click.trigger="removeUser(user.id)">X</button>
+          </td>
+        </tr>
+      </table>
+
+      <button type="submit" disabled.bind="isSaving || hasError">Save</button>
+    </form>
+
+    <div class="debug-errors">
+      <span>The errors object:</span>
+      <pre>${errors | json:2}</pre>
+    </div>
+  </div>
+</template>

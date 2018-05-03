@@ -28,7 +28,12 @@
             placeholder.bind="placeholder"></textarea>
 
   <select if.bind="type === 'select'" value.bind="value">
-    <option repeat.for="option of options" model.bind="option">${option}</option>
+    <!-- options supports ['a', 'b']
+         or [{value: 'a', label: 'A'}, {value: 'b', label: 'B'}] -->
+    <option repeat.for="option of options"
+            model.bind="option.value || option">
+      ${option.label || option}
+    </option>
   </select>
 
   <div class="field-error" repeat.for="err of errors">${err}</div>

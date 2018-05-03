@@ -16,7 +16,7 @@ I will explain bit more after this first example, I promise you won't see any ex
 
 The first thing you see from the above simple example is that **`bcx-validation` does not depend on Aurelia**. It's a generic validation tool.
 
-The entry is a class `Validation`, we use class to allow you to customise it (adding helper, and implement new validators) before using it.
+The entry is a class `Validation`, we use class to allow you to customise it (adding helper, implement new validator) before using it.
 
 To isolate your customisation, it's recommended to register it as transient in Aurelia DI container.
 

@@ -38,6 +38,13 @@ export class App {
         moduleId: 'examples/e4-email-and-password/index'
       },
       {
+        route: 'tutorial/foreach-switch-and-customise', name: 'tutorial/foreach-switch-and-customise',
+        title: 'Foreach, switch and customise',
+        nav: true,
+        settings: {section: 'Tutorial by examples'},
+        moduleId: 'examples/e5-foreach-switch-and-customise/index'
+      },
+      {
         route: 'tutorial/wip', name: 'tutorial/wip',
         title: '[WIP]',
         nav: true,
