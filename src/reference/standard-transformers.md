@@ -1,12 +1,12 @@
 # Standard transformers
 
-## [if transformer](#/reference/if-transformer), aka conditional validation
+### [if transformer](#/reference/if-transformer), aka conditional validation
 
-## [switch transformer](#/reference/switch-transformer)
+### [switch transformer](#/reference/switch-transformer)
 
-## [foreach transformer](#/reference/foreach-transformer)
+### [foreach transformer](#/reference/foreach-transformer)
 
-## regex transformer (2 forms)
+### regex transformer (2 forms)
 
 1. transform `/aRegex/` into `{validate: 'isTrue', value: /aRegex/, message: 'invalid format'}`
 2. transform `{validate: /aRegex/}` into `{validate: 'isTrue', value: /aRegex/, message: 'invalid format'}`

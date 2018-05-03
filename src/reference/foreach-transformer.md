@@ -1,12 +1,12 @@
 # foreach transformer
 
-`foreach` is a feature that distance `bcx-validation` from other alternatives. It made easy to validate dynamic models.
+`foreach` is a feature that sets `bcx-validation` apart from other alternatives. It made easy to validate dynamic models.
 
-The example in [introduction](#/reference/intro) is a good example of `foreach` transformer. It uses item index as the error key, that's default behaviour of `foreach` transformer.
+The [introduction](#/reference/intro) showed an example of `foreach` transformer. It uses item index as the error key, that's default behaviour of `foreach` transformer.
 
 ## Error key override
 
-Let's use id as the error key, this makes it easier to inspect error object.
+Let's use customer id as the error key, this makes it easier to inspect error object.
 
 <div><code-viewer value="var rule = {
   customers: {
@@ -46,11 +46,11 @@ validation.validate(model, rule);
 
 > Note since the id "ab" is not unique, the error only appears once. If you don't use `key: "id"` error key override, the error will appears twice, one on "1", another on "2".
 
-> key uses expression or function. Produced result must be a string.
+> key can use either expression or function.
 
 ## Special context variables introduced by foreach
 
-Underneath, for every item in the model array, `foreach` transformer creates new override context (aurelia-binding concept) and add few special context variables.
+Underneath, for every item in the model array, `foreach` transformer creates new overrideContext (aurelia-binding concept) and add few special context variables.
 
 > Similar to what aurelia repeater does in html template.
 

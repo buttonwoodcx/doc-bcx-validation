@@ -60,13 +60,13 @@ validation.addValidator(&quot;number&quot;, [
   // option {integer: true}
   {if: &quot;$integer&quot;, validate: &quot;isTrue&quot;, value: v => _.isInteger(v), message: &quot;must be an integer&quot;, stopValidationChainIfFail: true},
   // option {min: aNumber}
-  {if: &quot;_.isNumber($min)&quot;, validate: &quot;isTrue&quot;, value: &quot;$value >= $min&quot;, message: &quot;must be at least ${$min}&quot;},
+  {if: &quot;_.isNumber($min)&quot;, validate: &quot;isTrue&quot;, value: &quot;$value >= $min&quot;, message: &quot;must be at least \${$min}&quot;},
   // option {greaterThan: aNumber}
-  {if: &quot;_.isNumber($greaterThan)&quot;, validate: &quot;isTrue&quot;, value: &quot;$value > $greaterThan&quot;, message: &quot;must be greater than ${$greaterThan}&quot;},
+  {if: &quot;_.isNumber($greaterThan)&quot;, validate: &quot;isTrue&quot;, value: &quot;$value > $greaterThan&quot;, message: &quot;must be greater than \${$greaterThan}&quot;},
   // option {max: aNumber}
-  {if: &quot;_.isNumber($max)&quot;, validate: &quot;isTrue&quot;, value: &quot;$value <= $max&quot;, message: &quot;must be no more than ${$max}&quot;},
+  {if: &quot;_.isNumber($max)&quot;, validate: &quot;isTrue&quot;, value: &quot;$value <= $max&quot;, message: &quot;must be no more than \${$max}&quot;},
   // option {lessThan: aNumber}
-  {if: &quot;_.isNumber($lessThan)&quot;, validate: &quot;isTrue&quot;, value: &quot;$value < $lessThan&quot;, message: &quot;must be less than ${$lessThan}&quot;},
+  {if: &quot;_.isNumber($lessThan)&quot;, validate: &quot;isTrue&quot;, value: &quot;$value < $lessThan&quot;, message: &quot;must be less than \${$lessThan}&quot;},
   // option {even: true}
   {if: &quot;$even&quot;, validate: &quot;isTrue&quot;, value: v => v % 2 === 0, message: &quot;must be an even number&quot;},
   // option {odd: true}
@@ -76,20 +76,20 @@ validation.addValidator(&quot;number&quot;, [
 // {validate: 'string', minLength: 4, maxLength: 8}
 validation.addValidator(&quot;string&quot;, [
   {validate: &quot;isTrue&quot;, value: v => _.isString(v), message: &quot;must be a string&quot;, stopValidationChainIfFail: true},
-  {if: &quot;$minLength&quot;, validate: &quot;isTrue&quot;, value: &quot;_.size($value) >= $minLength&quot;, message: &quot;must have at least ${$minLength} characters&quot;},
-  {if: &quot;$maxLength&quot;, validate: &quot;isTrue&quot;, value: &quot;_.size($value) <= $maxLength&quot;, message: &quot;must be no more than ${$maxLength} characters&quot;}
+  {if: &quot;$minLength&quot;, validate: &quot;isTrue&quot;, value: &quot;_.size($value) >= $minLength&quot;, message: &quot;must have at least \${$minLength} characters&quot;},
+  {if: &quot;$maxLength&quot;, validate: &quot;isTrue&quot;, value: &quot;_.size($value) <= $maxLength&quot;, message: &quot;must be no more than \${$maxLength} characters&quot;}
 ]);
 
 // {validate: 'within', items: [ ... ]}
-validation.addValidator(&quot;within&quot;, {validate: &quot;isTrue&quot;, value: &quot;_.includes($items, $value)&quot;, message: &quot;must be one of ${_.join($items, ', ')}&quot;});
+validation.addValidator(&quot;within&quot;, {validate: &quot;isTrue&quot;, value: &quot;_.includes($items, $value)&quot;, message: &quot;must be one of \${_.join($items, ', ')}&quot;});
 
 // {validate: 'notIn', items: [ ... ]}
-validation.addValidator(&quot;notIn&quot;, {validate: &quot;isFalse&quot;, value: &quot;_.includes($items, $value)&quot;, message: &quot;must not be one of ${_.join($items, ', ')}&quot;});
+validation.addValidator(&quot;notIn&quot;, {validate: &quot;isFalse&quot;, value: &quot;_.includes($items, $value)&quot;, message: &quot;must not be one of \${_.join($items, ', ')}&quot;});
 
 // {validate: 'contain', item: obj, /* or items: [...] */}
 validation.addValidator(&quot;contain&quot;, [
-  {if: &quot;$item&quot;, validate: &quot;isTrue&quot;, value: &quot;_.includes($value, $item)&quot;, message: &quot;must contain ${$item}&quot;},
-  {if: &quot;$items&quot;, validate: &quot;isBlank&quot;, value: &quot;_.difference($items, $value)&quot;, message: &quot;missing ${_.difference($items, $value).join(', ')}&quot;},
+  {if: &quot;$item&quot;, validate: &quot;isTrue&quot;, value: &quot;_.includes($value, $item)&quot;, message: &quot;must contain \${$item}&quot;},
+  {if: &quot;$items&quot;, validate: &quot;isBlank&quot;, value: &quot;_.difference($items, $value)&quot;, message: &quot;missing \${_.difference($items, $value).join(', ')}&quot;},
 ]);
 
 // {validate: 'password', minLength: 4, maxLength: 8, alphabet: true, mixCase: true, digit: true, specialChar: true}
