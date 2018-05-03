@@ -1,0 +1,24 @@
+<template>
+  <div class="demo-columns equal-size">
+    <form submit.trigger="save()">
+      <form-field label="Username (email)"
+                  value.bind="model.username"
+                  errors.bind="errors.username"></form-field>
+      <form-field label="Password"
+                  type="password"
+                  value.bind="model.password"
+                  errors.bind="errors.password"></form-field>
+      <form-field label="Confirm Password"
+                  type="password"
+                  value.bind="model.confirmPassword"
+                  errors.bind="errors.confirmPassword"></form-field>
+
+      <button type="submit" disabled.bind="isSaving || hasError">Save</button>
+    </form>
+
+    <div class="debug-errors">
+      <span>The errors object:</span>
+      <pre>${errors | json:2}</pre>
+    </div>
+  </div>
+</template>

@@ -31,6 +31,13 @@ export class App {
         moduleId: 'examples/e3-number-and-conditional/index'
       },
       {
+        route: 'tutorial/email-and-password', name: 'tutorial/email-and-password',
+        title: 'Email and password',
+        nav: true,
+        settings: {section: 'Tutorial by examples'},
+        moduleId: 'examples/e4-email-and-password/index'
+      },
+      {
         route: 'tutorial/wip', name: 'tutorial/wip',
         title: '[WIP]',
         nav: true,

@@ -11,6 +11,11 @@
          value.bind="value"
          placeholder.bind="placeholder">
 
+  <input if.bind="type === 'password'"
+         type="password"
+         value.bind="value"
+         placeholder.bind="placeholder">
+
   <!-- binding-behavior "number" is used for number input -->
   <input if.bind="type === 'number'"
          type="text"
