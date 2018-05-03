@@ -1,7 +1,7 @@
 {
   "name": "doc-bcx-validation",
   "description": "Document for bcx-validation",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "http://github.com/buttonwoodcx/doc-bcx-validation"
