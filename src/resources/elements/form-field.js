@@ -8,4 +8,6 @@ export class FormField {
   @bindable({defaultBindingMode: bindingMode.twoWay}) value;
   @bindable errors;
   @bindable options; // for type = 'select'
+  @bindable integerOnly = false; // for type = 'number'
+  @bindable allowNegative = false; // for type = 'number'
 }

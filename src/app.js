@@ -24,6 +24,13 @@ export class App {
         moduleId: 'examples/e2-foreach-and-nested/index'
       },
       {
+        route: 'tutorial/number-and-conditional', name: 'tutorial/number-and-conditional',
+        title: 'Number and conditional',
+        nav: true,
+        settings: {section: 'Tutorial by examples'},
+        moduleId: 'examples/e3-number-and-conditional/index'
+      },
+      {
         route: 'tutorial/wip', name: 'tutorial/wip',
         title: '[WIP]',
         nav: true,

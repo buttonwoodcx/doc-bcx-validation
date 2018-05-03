@@ -36,12 +36,12 @@ export class SimpleForm {
       },
       address: { // nested rule
         line1: 'mandatory',
-        // line2: 'notMandatory', // this line is noop.
+        // line2: 'notMandatory', // this line is no-op.
         suburb: 'mandatory',
         state: {
           validate: 'within',
           items: ['ACT', 'NSW'],
-          message: 'sorry, we do not support bussiness outside of ACT and NSW yet'
+          message: 'sorry, at this moment, we do not support business outside of ACT and NSW'
         },
         postcode: ['mandatory', {validate: /^\d{4}$/, message: 'not valid postcode'}]
       },
@@ -86,7 +86,7 @@ export class SimpleForm {
     fakeSave(this.model).then(
       json => {
         this.isSaving = false;
-        /* eslint no-alert: 0 */
+        // eslint-disable-next-line no-alert
         alert(json.message);
       },
       err => {

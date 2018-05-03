@@ -1,12 +1,26 @@
 <template class="form-field ${errors ? 'in-valid' : ''}">
   <label>
-    <input if.bind="type === 'boolean'" type="checkbox" checked.bind="value">
+    <input if.bind="type === 'boolean'"
+           type="checkbox"
+           checked.bind="value">
     ${label}
   </label>
 
-  <input if.bind="type === 'string'" type="text" value.bind="value" placeholder.bind="placeholder">
-  <input if.bind="type === 'number'" type="text" value.bind="value | number" placeholder.bind="placeholder">
-  <textarea if.bind="type === 'text'" rows="10" value.bind="value" placeholder.bind="placeholder"></textarea>
+  <input if.bind="type === 'string'"
+         type="text"
+         value.bind="value"
+         placeholder.bind="placeholder">
+
+  <!-- binding-behavior "number" is used for number input -->
+  <input if.bind="type === 'number'"
+         type="text"
+         value.bind="value & number:{integerOnly: integerOnly, allowNegative: allowNegative}"
+         placeholder.bind="placeholder">
+
+  <textarea if.bind="type === 'text'"
+            rows="5"
+            value.bind="value"
+            placeholder.bind="placeholder"></textarea>
 
   <select if.bind="type === 'select'" value.bind="value">
     <option repeat.for="option of options" model.bind="option">${option}</option>

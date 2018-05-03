@@ -1,0 +1,33 @@
+<template>
+  <div class="demo-columns equal-size">
+    <form submit.trigger="save()">
+      <!-- type="number" uses binding-behavior "number" undernearth -->
+      <form-field label="CPU"
+                  value.bind="model.cpu"
+                  type="number"
+                  integer-only.bind="true"
+                  errors.bind="errors.cpu"></form-field>
+      <form-field label="Memory (MB)"
+                  value.bind="model.memory"
+                  type="number"
+                  integer-only.bind="true"
+                  errors.bind="errors.memory"></form-field>
+      <form-field label="Disk (GB)"
+                  value.bind="model.disk"
+                  type="number"
+                  integer-only.bind="true"
+                  errors.bind="errors.disk"></form-field>
+      <form-field label="will host Java?"
+                  type="boolean"
+                  value.bind="model.willHostJava"
+                  errors.bind="errors.willHostJava"></form-field>
+
+      <button type="submit" disabled.bind="isSaving || hasError">Save</button>
+    </form>
+
+    <div class="debug-errors">
+      <span>The errors object:</span>
+      <pre>${errors | json:2}</pre>
+    </div>
+  </div>
+</template>
