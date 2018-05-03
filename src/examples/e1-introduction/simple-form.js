@@ -14,8 +14,8 @@ export class SimpleForm {
   constructor(validation) {
     this.validate = validation.generateValidator({
       name: 'mandatory', // short-cut of {validate: 'mandatory'}
-      // chain of rules, 'mandatory' rule will skip rest of
-      // the chain when value is blank.
+      // chain of rules, 'mandatory' rule will fail and skip
+      // rest of the chain when value is blank.
       // short-cut of [{validate: 'mandatory'}, {validate: 'email'}].
       email: ['mandatory', 'email']
     });
