@@ -45,6 +45,13 @@ export class App {
         moduleId: 'examples/e5-foreach-switch-and-customise/index'
       },
       {
+        route: 'tutorial/foreach-and-conditional', name: 'tutorial/foreach-and-conditional',
+        title: 'Foreach and conditional',
+        nav: true,
+        settings: {section: 'Tutorial by examples'},
+        moduleId: 'examples/e6-foreach-and-conditional/index'
+      },
+      {
         route: 'tutorial/wip', name: 'tutorial/wip',
         title: '[WIP]',
         nav: true,
