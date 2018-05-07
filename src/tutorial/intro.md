@@ -12,11 +12,13 @@ Enough talking, let's look at first example.
 
 I will explain bit more after this first example, I promise you won't see any excessive explanation from next page on.
 
-## bcx-validation is generic, not an Aurelia plugin
+## bcx-validation is generic
 
-The first thing you see from the above simple example is that **`bcx-validation` does not depend on Aurelia**. It's a generic validation tool.
+The first thing you can see from the above simple example is that **`bcx-validation` is a generic validation tool**. We show all our tutorial examples in [Aurelia](https://aurelia.io), because Aurelia rocks.
 
-The entry is a class `Validation`, we use class to allow you to customise it (adding helper, implement new validator) before using it.
+> Aurelia's dependency injection and two-way binding makes integrating bcx-validation very intuitive without excessive boilerplate.
+
+The entry is a class `Validation`, we use class to allow user to customise (adding helper, implement new validator) before validate.
 
 To isolate your customisation, it's recommended to register it as transient in Aurelia DI container.
 
