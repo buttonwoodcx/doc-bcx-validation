@@ -1,3 +1,13 @@
+<a name="0.1.1"></a>
+## [0.1.1](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.0...v0.1.1) (2018-05-07)
+
+
+### Features
+
+* example: foreach and conditional ([e24509a](https://github.com/buttonwoodcx/doc-bcx-validation/commit/e24509a))
+
+
+
 <a name="0.1.0"></a>
 # 0.1.0 (2018-05-03)
 
