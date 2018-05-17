@@ -1,3 +1,13 @@
+<a name="0.1.8"></a>
+## [0.1.8](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.7...v0.1.8) (2018-05-17)
+
+
+### Features
+
+* 2 new examples: validator composition, validator function ([cb8367d](https://github.com/buttonwoodcx/doc-bcx-validation/commit/cb8367d))
+
+
+
 <a name="0.1.7"></a>
 ## [0.1.7](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.6...v0.1.7) (2018-05-17)
 
