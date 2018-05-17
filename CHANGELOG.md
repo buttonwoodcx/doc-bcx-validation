@@ -1,3 +1,14 @@
+<a name="0.1.7"></a>
+## [0.1.7](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.6...v0.1.7) (2018-05-17)
+
+
+### Features
+
+* new example: merge server side error ([0845095](https://github.com/buttonwoodcx/doc-bcx-validation/commit/0845095))
+* new example: warnings and errors ([2ff4116](https://github.com/buttonwoodcx/doc-bcx-validation/commit/2ff4116))
+
+
+
 <a name="0.1.6"></a>
 ## [0.1.6](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.5...v0.1.6) (2018-05-17)
 
