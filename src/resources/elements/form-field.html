@@ -1,4 +1,4 @@
-<template class="form-field ${errors ? 'in-valid' : ''}">
+<template class="form-field ${errors ? 'in-valid' : ''} ${warnings && !errors ? 'warning' : ''}">
   <label>
     <input if.bind="type === 'boolean'"
            type="checkbox"
@@ -37,4 +37,5 @@
   </select>
 
   <div class="field-error" repeat.for="err of errors">${err}</div>
+  <div class="field-warning" repeat.for="warn of warnings">${warn}</div>
 </template>

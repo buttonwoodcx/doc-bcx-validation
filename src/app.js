@@ -66,6 +66,13 @@ export class App {
         moduleId: 'examples/e8-merge-server-side-error/index'
       },
       {
+        route: 'tutorial/warnings-and-errors', name: 'tutorial/warnings-and-errors',
+        title: 'Warnings and errors',
+        nav: true,
+        settings: {section: 'Tutorial by examples'},
+        moduleId: 'examples/e9-warnings-and-errors/index'
+      },
+      {
         route: 'tutorial/wip', name: 'tutorial/wip',
         title: '[WIP]',
         nav: true,

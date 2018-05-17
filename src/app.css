@@ -22,6 +22,16 @@
   border-color: #DD6163;
 }
 
+.form-field.warning > label {
+  color: #FECD3D;
+}
+
+.form-field.warning > input,
+.form-field.warning > text-area,
+.form-field.warning > select {
+  border-color: #FECD3D;
+}
+
 .form-field {
   display: block;
   margin-bottom: .2rem;
@@ -30,6 +40,11 @@
 .form-field > .field-error {
   font-size: .7rem;
   color: #DD6163
+}
+
+.form-field > .field-warning {
+  font-size: .7rem;
+  color: #FECD3D
 }
 
 .demo-columns {

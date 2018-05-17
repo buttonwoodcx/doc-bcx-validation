@@ -7,6 +7,7 @@ export class FormField {
   @bindable type = 'string'; // support boolean, string, text, number, password, and text
   @bindable({defaultBindingMode: bindingMode.twoWay}) value;
   @bindable errors;
+  @bindable warnings;
   @bindable options; // for type = 'select'
   @bindable integerOnly = false; // for type = 'number'
   @bindable allowNegative = false; // for type = 'number'

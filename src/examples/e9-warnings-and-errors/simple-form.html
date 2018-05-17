@@ -1,0 +1,28 @@
+<template>
+  <div class="demo-columns">
+
+    <form submit.trigger="save()">
+      <form-field label="Name"
+                  value.bind="model.name"
+                  errors.bind="errors.name"
+                  warnings.bind="warnings.name"></form-field>
+      <form-field label="Age"
+                  type="number"
+                  integer-only.bind="true"
+                  value.bind="model.age"
+                  errors.bind="errors.age"
+                  warnings.bind="warnings.age"></form-field>
+      <button type="submit" disabled.bind="isSaving || hasError">Save</button>
+    </form>
+
+    <div class="debug-errors">
+      <span>The errors object:</span>
+      <pre>${errors | json:2}</pre>
+    </div>
+
+    <div class="debug-errors">
+      <span>The warnings object:</span>
+      <pre>${warnings | json:2}</pre>
+    </div>
+  </div>
+</template>
