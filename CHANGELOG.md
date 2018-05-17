@@ -1,3 +1,13 @@
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.1...v0.1.2) (2018-05-17)
+
+
+### Features
+
+* new example: i18n ([4a9dad1](https://github.com/buttonwoodcx/doc-bcx-validation/commit/4a9dad1))
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.0...v0.1.1) (2018-05-07)
 
