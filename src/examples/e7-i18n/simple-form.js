@@ -35,7 +35,9 @@ export class SimpleForm {
         {
           validate: 'isTrue',
           value: '$value >= 12',
-          message: "${i18n.tr('must_be_at_least', {min: 12})}"
+          // you can use function instead of string interpolation.
+          // don't need addHelper('i18n', i18n) for this to work.
+          message: () => i18n.tr('must_be_at_least', {min: 12})
         }
       ]
     });
