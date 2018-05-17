@@ -59,6 +59,13 @@ export class App {
         moduleId: 'examples/e7-i18n/index'
       },
       {
+        route: 'tutorial/merge-server-side-error', name: 'tutorial/merge-server-side-error',
+        title: 'Merge server side error',
+        nav: true,
+        settings: {section: 'Tutorial by examples'},
+        moduleId: 'examples/e8-merge-server-side-error/index'
+      },
+      {
         route: 'tutorial/wip', name: 'tutorial/wip',
         title: '[WIP]',
         nav: true,
