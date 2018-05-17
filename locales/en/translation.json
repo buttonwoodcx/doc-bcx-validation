@@ -1,0 +1,7 @@
+{
+  "name": "Name",
+  "age": "Age",
+  "save": "Save",
+  "must_not_be_empty": "must not be empty",
+  "must_be_at_least": "must be at least {{min}}"
+}

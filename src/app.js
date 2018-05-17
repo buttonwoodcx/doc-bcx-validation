@@ -52,6 +52,13 @@ export class App {
         moduleId: 'examples/e6-foreach-and-conditional/index'
       },
       {
+        route: 'tutorial/i18n', name: 'tutorial/i18n',
+        title: 'I18N',
+        nav: true,
+        settings: {section: 'Tutorial by examples'},
+        moduleId: 'examples/e7-i18n/index'
+      },
+      {
         route: 'tutorial/wip', name: 'tutorial/wip',
         title: '[WIP]',
         nav: true,
