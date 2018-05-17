@@ -4,25 +4,22 @@
 
 You can add your own helper.
 
-```javascript
-validation.addHelper('sum', (a, b) => a + b);
+<div><code-viewer value="validation.addHelper('sum', (a, b) => a + b);
 
 var rule = {
   a: {
     validate: 'isTrue',
     value: 'sum($value, b) > 10',
-    message: "sum(\${sum($value,b)}) is not more than 10"
+    message: &quot;sum(\${sum($value,b)}) is not more than 10&quot;
   }
 };
 
 validation.validate({a: 2, b: 3}, rule);
-// => { a: ["sum(5) is not more than 10"] }
-```
+// => { a: ['sum(5) is not more than 10'] }" mode="js"></code-viewer></div>
 
 That was a trivial example. Here is a more useful example.
 
-```javascript
-var model = {
+<div><code-viewer value="var model = {
   customers: [
     {id: 'c1', name: 'A', friendIds: ['c3', 'c4']},
     {id: 'c2', name: 'B', friendIds: []},
@@ -31,8 +28,7 @@ var model = {
   ]
 };
 
-validation.addHelper('customerOf', (id) => _.find(model.customers, {id}));
-```
+validation.addHelper('customerOf', (id) => _.find(model.customers, {id}));" mode="js"></code-viewer></div>
 
 Then you can use `customerOf(a_id)` in any expression. For instance, on any property of a customer, you can do `"_(friendIds).map(customerOf).map('name').value()"` to get all friends' names for that customer.
 
