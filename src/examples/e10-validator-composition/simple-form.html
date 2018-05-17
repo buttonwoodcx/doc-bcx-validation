@@ -1,0 +1,19 @@
+<template>
+  <div class="demo-columns">
+
+    <form submit.trigger="save()">
+      <form-field label="Label"
+                  value.bind="model.label"
+                  errors.bind="errors.label"></form-field>
+      <form-field label="Australia Phone"
+                  value.bind="model.phone"
+                  errors.bind="errors.phone"></form-field>
+      <button type="submit" disabled.bind="isSaving || hasError">Save</button>
+    </form>
+
+    <div class="debug-errors">
+      <span>The errors object:</span>
+      <pre>${errors | json:2}</pre>
+    </div>
+  </div>
+</template>

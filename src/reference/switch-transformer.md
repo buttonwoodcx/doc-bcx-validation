@@ -6,7 +6,9 @@
     'cases': {
       'string': ['mandatory', {validate: 'string', minLength: 4}],
       'number': ['notMandatory', {validate: 'number', min: 10}]
-    }
+    },
+    // default is optional, if no case matches, run default rule
+    'default': 'mandatory'
   }
 };
 
@@ -29,6 +31,10 @@ validation.validate({value: 5, type: 'number'}, rule);
       // nested rule
       value: ['notMandatory', {validate: 'number', min: 10}]
     }
+  },
+  // default is optional, if no case matches, run default rule
+  'default': {
+    value: 'mandatory'
   }
 };
 

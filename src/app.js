@@ -73,6 +73,20 @@ export class App {
         moduleId: 'examples/e9-warnings-and-errors/index'
       },
       {
+        route: 'tutorial/validator-composition', name: 'tutorial/validator-composition',
+        title: 'Validator composition',
+        nav: true,
+        settings: {section: 'Tutorial by examples'},
+        moduleId: 'examples/e10-validator-composition/index'
+      },
+      {
+        route: 'tutorial/validator-function', name: 'tutorial/validator-function',
+        title: 'Validator function',
+        nav: true,
+        settings: {section: 'Tutorial by examples'},
+        moduleId: 'examples/e11-validator-function/index'
+      },
+      {
         route: 'tutorial/wip', name: 'tutorial/wip',
         title: '[WIP]',
         nav: true,
