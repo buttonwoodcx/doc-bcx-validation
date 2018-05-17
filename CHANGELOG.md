@@ -1,3 +1,13 @@
+<a name="0.1.3"></a>
+## [0.1.3](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.2...v0.1.3) (2018-05-17)
+
+
+### Bug Fixes
+
+* proper errors update on i18n locale change ([f4de259](https://github.com/buttonwoodcx/doc-bcx-validation/commit/f4de259))
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.1...v0.1.2) (2018-05-17)
 
