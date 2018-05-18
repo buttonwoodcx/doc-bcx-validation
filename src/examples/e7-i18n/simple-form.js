@@ -41,6 +41,16 @@ export class SimpleForm {
         }
       ]
     });
+
+    // the above is not the only way to support i18n.
+    // since bcx-validation doesn't provide any related feature,
+    // you are free to implement however you want.
+    //
+    // for instance, override error message without using i18n,
+    // {message: 'must_not_be_empty'}
+    // {message: 'must_be_at_least:12'} // you need some convention to pass parameters
+    // then translate those errors into i18n in html template (form-field.html),
+    // note you need some code to handle i18n parameters.
   }
 
   localeChanged(newLocale) {
