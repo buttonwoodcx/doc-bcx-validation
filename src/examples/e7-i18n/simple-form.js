@@ -56,7 +56,7 @@ export class SimpleForm {
   localeChanged(newLocale) {
     this.i18n.setLocale(newLocale).then(() => {
       // wait for i18next properly.
-      // errors is depending on this.i18nLocale, not this.locale.
+      // errors are depending on this.i18nLocale, not this.locale.
       this.i18nLocale = this.i18n.getLocale();
     });
   }
