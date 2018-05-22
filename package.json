@@ -16,6 +16,7 @@
   "dependencies": {
     "aurelia-animator-css": "^1.0.4",
     "aurelia-bootstrapper": "^2.2.0",
+    "aurelia-getter-throttle": "^1.0.2",
     "aurelia-i18n": "^2.2.0",
     "bcx-doc-base": "buttonwoodcx/bcx-doc-base#v0.1.12",
     "bcx-validation": "^0.3.3",

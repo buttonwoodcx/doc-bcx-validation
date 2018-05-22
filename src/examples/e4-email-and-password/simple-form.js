@@ -1,5 +1,6 @@
 import {inject, computedFrom} from 'aurelia-framework';
 import Validation from 'bcx-validation';
+import {getterThrottle} from 'aurelia-getter-throttle';
 import fakeSave from '../../utils/fake-save';
 
 @inject(Validation)
@@ -40,7 +41,10 @@ export class SimpleForm {
   }
 
   // as model is very simple here,
-  // we can use computedFrom for efficiency
+  // we can use computedFrom for efficiency.
+  // using getterThrottle is optional.
+  // https://github.com/huochunpeng/aurelia-getter-throttle
+  @getterThrottle()
   @computedFrom('triedSubmit', 'model.username', 'model.password', 'model.confirmPassword')
   get errors() {
     // avoid showing error before first submit

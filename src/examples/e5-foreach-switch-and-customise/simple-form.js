@@ -1,5 +1,6 @@
 import {inject, computedFrom} from 'aurelia-framework';
 import Validation from 'bcx-validation';
+import {getterThrottle} from 'aurelia-getter-throttle';
 import fakeSave from '../../utils/fake-save';
 
 @inject(Validation)
@@ -65,7 +66,10 @@ export class SimpleForm {
     }
   }
 
-  // dirty check
+  // dirty check.
+  // using getterThrottle is optional.
+  // https://github.com/huochunpeng/aurelia-getter-throttle
+  @getterThrottle()
   get errors() {
     // avoid showing error before first submit
     if (this.triedSubmit) {
