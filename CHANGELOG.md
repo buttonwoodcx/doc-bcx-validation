@@ -1,3 +1,13 @@
+<a name="0.1.10"></a>
+## [0.1.10](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.9...v0.1.10) (2018-05-22)
+
+
+### Features
+
+* use getterThrottle to improve performance ([1824bed](https://github.com/buttonwoodcx/doc-bcx-validation/commit/1824bed))
+
+
+
 <a name="0.1.9"></a>
 ## [0.1.9](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.8...v0.1.9) (2018-05-18)
 
