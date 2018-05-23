@@ -16,7 +16,7 @@
   "dependencies": {
     "aurelia-animator-css": "^1.0.4",
     "aurelia-bootstrapper": "^2.2.0",
-    "aurelia-getter-throttle": "^1.0.2",
+    "aurelia-getter-throttle": "^1.0.4",
     "aurelia-i18n": "^2.2.0",
     "bcx-doc-base": "buttonwoodcx/bcx-doc-base#v0.1.12",
     "bcx-validation": "^0.3.3",
@@ -55,7 +55,7 @@
     "gulp-marked": "^1.0.0",
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.0",
-    "gulp-rename": "^1.2.2",
+    "gulp-rename": "^1.2.3",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-watch": "^5.0.0",
     "htmlhint": "^0.9.13",
@@ -71,8 +71,8 @@
     "source-map": "^0.5.7",
     "standard-changelog": "^1.0.19",
     "through2": "^2.0.3",
-    "uglify-js": "^3.3.23",
-    "vinyl-fs": "^3.0.2"
+    "uglify-js": "^3.3.27",
+    "vinyl-fs": "^3.0.3"
   },
   "scripts": {
     "sass-lint": "sass-lint -c .sass-lint.yml 'src/**/*.scss'",

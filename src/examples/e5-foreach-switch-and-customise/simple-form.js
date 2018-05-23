@@ -68,7 +68,7 @@ export class SimpleForm {
 
   // dirty check.
   // using getterThrottle is optional.
-  // https://github.com/huochunpeng/aurelia-getter-throttle
+  // https://github.com/aurelia-contrib/aurelia-getter-throttle
   @getterThrottle()
   get errors() {
     // avoid showing error before first submit

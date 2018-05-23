@@ -58,7 +58,7 @@ export class SimpleForm {
   // use dirty check as model is quite complex.
   // dirty check is not a sin.
   // using getterThrottle is optional.
-  // https://github.com/huochunpeng/aurelia-getter-throttle
+  // https://github.com/aurelia-contrib/aurelia-getter-throttle
   @getterThrottle()
   get errors() {
     // don't show err on empty form before user tries submit

@@ -30,7 +30,7 @@ export class SimpleForm {
   // as model is very simple here,
   // we can use computedFrom for efficiency.
   // using getterThrottle is optional.
-  // https://github.com/huochunpeng/aurelia-getter-throttle
+  // https://github.com/aurelia-contrib/aurelia-getter-throttle
   @getterThrottle()
   @computedFrom('triedSubmit', 'model.name', 'model.age')
   get errors() {
