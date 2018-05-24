@@ -1,3 +1,13 @@
+<a name="0.1.12"></a>
+## [0.1.12](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.11...v0.1.12) (2018-05-24)
+
+
+### Bug Fixes
+
+* update bcx-doc-base to fix copy issue in codemirror editor ([59b933c](https://github.com/buttonwoodcx/doc-bcx-validation/commit/59b933c))
+
+
+
 <a name="0.1.11"></a>
 ## [0.1.11](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.10...v0.1.11) (2018-05-23)
 
