@@ -2,7 +2,8 @@
   <div class="demo-columns">
     <form submit.trigger="save()" style="max-width: 400px;">
       Users
-      <button if.bind="users.length < 5"
+      <button type="button"
+              if.bind="users.length < 5"
               click.trigger="addUser()">+</button>
       <table class="form-table">
         <tr repeat.for="user of users">
@@ -23,7 +24,7 @@
                         placeholder="Phone"></form-field>
           </td>
           <td if.bind="!$first">
-            <button click.trigger="removeUser(user.id)">X</button>
+            <button type="button" click.trigger="removeUser(user.id)">X</button>
           </td>
         </tr>
       </table>

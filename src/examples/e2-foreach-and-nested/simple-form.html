@@ -17,7 +17,7 @@
                       value.bind="model.agreeTerm"
                       errors.bind="errors.agreeTerm"></form-field>
 
-          <p>Phone numbers <button click.trigger="addPhoneNumber()" if.bind="model.phoneNumbers.length < 3">+</button></p>
+          <p>Phone numbers <button type="button" click.trigger="addPhoneNumber()" if.bind="model.phoneNumbers.length < 3">+</button></p>
 
           <table class="form-table">
             <tr repeat.for="phoneNumber of model.phoneNumbers">
@@ -33,7 +33,7 @@
                             placeholder="phone number"></form-field>
               </td>
               <td if.bind="!$first">
-                <button click.trigger="removePhoneNumber($index)">X</button>
+                <button type="button" click.trigger="removePhoneNumber($index)">X</button>
               </td>
             </tr>
           </table>
