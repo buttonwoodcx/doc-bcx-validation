@@ -1,3 +1,13 @@
+<a name="0.1.13"></a>
+## [0.1.13](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.12...v0.1.13) (2018-05-25)
+
+
+### Bug Fixes
+
+* use <button type="button"> to prevent triggering when hit "enter" to submit form ([3a93641](https://github.com/buttonwoodcx/doc-bcx-validation/commit/3a93641))
+
+
+
 <a name="0.1.12"></a>
 ## [0.1.12](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.11...v0.1.12) (2018-05-24)
 
