@@ -183,6 +183,13 @@ export class App {
         nav: true,
         settings: {section: 'Reference'},
         moduleId: 'reference/add-helper-for-expression.html'
+      },
+      {
+        route: 'reference/summary', name: 'reference/summary',
+        title: 'Summary',
+        nav: true,
+        settings: {section: 'Reference'},
+        moduleId: 'reference/summary.html'
       }
     ]);
   }

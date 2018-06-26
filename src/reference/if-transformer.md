@@ -8,7 +8,7 @@ validation.validate('xx', {if: &quot;$value != 'NA'&quot;, validate: /id\d+/, me
 validation.validate('id23', {if: &quot;$value != 'NA'&quot;, validate: /id\d+/, message: 'invalid id format'});
 // => undefined" mode="js"></code-viewer></div>
 
-> We only support expression in `if` condition check, not function. This is to support an edge case that user really want to validate a property named "if" in the model. We will show example of this edge case in [nested rule](#/reference/nested-rule).
+> We only support expression in `if` condition check, not function. This is to support an edge case that user really want to validate a property named "if" in the model. We will show example of this edge case in [summary](#/reference/summary).
 
 Conditional validation was implemented as `if` transformer. We will explain more in [transformer rule](#/reference/transformer-rule).
 
