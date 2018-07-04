@@ -80,11 +80,17 @@ validation.addValidator(&quot;string&quot;, [
   {if: &quot;$maxLength&quot;, validate: &quot;isTrue&quot;, value: &quot;_.size($value) <= $maxLength&quot;, message: &quot;must be no more than \${$maxLength} characters&quot;}
 ]);
 
-// {validate: 'within', items: [ ... ]}
-validation.addValidator(&quot;within&quot;, {validate: &quot;isTrue&quot;, value: &quot;_.includes($items, $value)&quot;, message: &quot;must be one of \${_.join($items, ', ')}&quot;});
+// {validate: 'within', items: [ ... ], caseInsensitive: true}
+validation.addValidator(&quot;within&quot;, [
+  {if: &quot;!$caseInsensitive&quot;, validate: &quot;isTrue&quot;, value: &quot;_.includes($items, $value)&quot;, message: &quot;must be one of \${_.join($items, ', ')}&quot;},
+  {if: &quot;$caseInsensitive&quot;, validate: &quot;isTrue&quot;, value: &quot;_.includes(_.map($items, _.toLower), _.toLower($value))&quot;, message: &quot;must be one of \${_.join($items, ', ')}&quot;},
+]);
 
-// {validate: 'notIn', items: [ ... ]}
-validation.addValidator(&quot;notIn&quot;, {validate: &quot;isFalse&quot;, value: &quot;_.includes($items, $value)&quot;, message: &quot;must not be one of \${_.join($items, ', ')}&quot;});
+// {validate: 'notIn', items: [ ... ], caseInsensitive: true}
+validation.addValidator(&quot;notIn&quot;, [
+  {if: &quot;!$caseInsensitive&quot;, validate: &quot;isFalse&quot;, value: &quot;_.includes($items, $value)&quot;, message: &quot;must not be one of \${_.join($items, ', ')}&quot;},
+  {if: &quot;$caseInsensitive&quot;, validate: &quot;isFalse&quot;, value: &quot;_.includes(_.map($items, _.toLower), _.toLower($value))&quot;, message: &quot;must not be one of \${_.join($items, ', ')}&quot;},
+]);
 
 // {validate: 'contain', item: obj, /* or items: [...] */}
 validation.addValidator(&quot;contain&quot;, [
@@ -109,4 +115,12 @@ validation.addValidator(&quot;email&quot;, {validate: &quot;isTrue&quot;, value:
 // unique. need to access neighbours
 // option items is evaluated from current scope
 validation.addValidator(&quot;unique&quot;, {validate: &quot;notIn&quot;, &quot;items.bind&quot;: &quot;$neighbourValues&quot;, message: &quot;must be unique&quot;});
+
+// url, only http and https are supported
+// regex based on https://www.ietf.org/rfc/rfc3986.txt
+// but limited to just http and https protocol
+validation.addValidator(&quot;url&quot;, [
+  {validate: &quot;isFalse&quot;, value: /\s/, message: 'not a valid URL, white space must be escaped'},
+  {validate: &quot;isTrue&quot;, value: /^https?:\/\/[^/?#]*[^?#]*(\?[^#]*)?(#.*)?$/, message: 'not a valid URL'}
+]);
 " mode="js"></code-viewer></div>
