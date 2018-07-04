@@ -1,3 +1,13 @@
+<a name="0.1.15"></a>
+## [0.1.15](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.14...v0.1.15) (2018-07-04)
+
+
+### Features
+
+* upgrade to bcx-validation v0.3.5 ([b18b60e](https://github.com/buttonwoodcx/doc-bcx-validation/commit/b18b60e))
+
+
+
 <a name="0.1.14"></a>
 ## [0.1.14](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.1.13...v0.1.14) (2018-06-26)
 
