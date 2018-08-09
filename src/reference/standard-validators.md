@@ -109,7 +109,8 @@ validation.addValidator(&quot;password&quot;, [
 ]);
 
 // email regex from https://html.spec.whatwg.org/multipage/forms.html#valid-e-mail-address
-validation.addValidator(&quot;email&quot;, {validate: &quot;isTrue&quot;, value: /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+// updated to block Intranet email address user@server1 as it's rarely used nowadays
+validation.addValidator(&quot;email&quot;, {validate: &quot;isTrue&quot;, value: /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/,
            message: &quot;not a valid email&quot;});
 
 // unique. need to access neighbours
