@@ -6,6 +6,12 @@ Different from official [`aurelia-validation`](https://github.com/aurelia/valida
 
 > Validation is a function that takes `model` (not just key-val pairs) and `rule` as input, produces a structured `errors` (we will see shortly why we use plural) object as output. No more and no less.
 
+## Install package
+
+`npm i bcx-validation` or `yarn add bcx-validation`.
+
+> For aurelia-cli users, please make sure to use aurelia-cli version `1.0.0-beta.1` or above.
+
 Enough talking, let's look at first example.
 
 <compose view-model="../examples/e1-introduction/index"></compose>
