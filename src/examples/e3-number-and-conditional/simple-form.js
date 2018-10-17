@@ -65,7 +65,7 @@ export class SimpleForm {
         // eslint-disable-next-line no-alert
         alert(json.message);
       },
-      err => {
+      () => {
         this.isSaving = false;
       }
     );

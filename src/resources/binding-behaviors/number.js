@@ -22,7 +22,7 @@ export class NumberBindingBehavior {
     binding.updateTarget = _updateTarget;
   }
 
-  unbind(binding, source) {
+  unbind(binding) {
     binding.updateSource = binding.originalUpdateSource;
     binding.updateTarget = binding.originalUpdateTarget;
     delete binding.options;
