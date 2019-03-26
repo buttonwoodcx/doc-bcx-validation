@@ -1,4 +1,8 @@
+import {version as validationVersion} from 'bcx-validation/package.json';
+
 export class App {
+  validationVersion = validationVersion;
+
   configureRouter(config, router) {
     this.router = router;
 
