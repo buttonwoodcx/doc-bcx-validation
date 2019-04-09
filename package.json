@@ -20,8 +20,8 @@
     "aurelia-i18n": "^3.0.0-beta.5",
     "bcx-doc-base": "buttonwoodcx/bcx-doc-base#v1.0.7",
     "bcx-validation": "^1.0.0",
-    "bluebird": "^3.5.3",
     "jquery": "^3.3.1",
+    "promise-polyfill": "^8.1.0",
     "requirejs": "^2.3.6",
     "text": "requirejs/text#latest"
   },
