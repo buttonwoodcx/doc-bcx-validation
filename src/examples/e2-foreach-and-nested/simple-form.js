@@ -33,7 +33,7 @@ export class SimpleForm {
       email: ['notMandatory', 'email'],
       agreeTerm: {
         validate: 'isTrue',
-        message: 'you must to agree our term before continue'
+        message: 'you have to agree our term before continue'
       },
       address: { // nested rule
         line1: 'mandatory',
