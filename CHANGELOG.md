@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.2.8...v0.3.0) (2019-10-11)
+
+
+### Features
+
+* document static addHelper method ([2744006](https://github.com/buttonwoodcx/doc-bcx-validation/commit/27440066cdcc35f532a14728a352b8c3e28c6360))
+
+
+
 ## [0.2.8](https://github.com/buttonwoodcx/doc-bcx-validation/compare/v0.2.7...v0.2.8) (2019-06-11)
 
 
