@@ -35,7 +35,7 @@ Instead of testing the current value, you can override the value before it is be
 <div><code-viewer value="validation.validate('lorem', {validate: 'isTrue', value: '$value.length >= 8'});
 // => ['must be true']" mode="js"></code-viewer></div>
 
-The error message is odd, it doesn't reflect our intension, let's overwrite it.
+The error message is odd, it doesn't reflect our intention, let's overwrite it.
 
 <div><code-viewer value="validation.validate('lorem', {validate: 'isTrue',
                               value: '$value.length >= 8',
