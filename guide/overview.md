@@ -48,7 +48,7 @@ const rule = {
           validate: 'number',
           'min.bind': 'ageLimit',
            // note message looks like an ES6 string interpolation, but
-           // didn't back-tick `` string, as this string will be
+           // didn't use back-tick `` string, as this string will be
            // interpolated at runtime when validation runs.
            message: '${$parent.name} must be at least ${ageLimit} years old'
         }
