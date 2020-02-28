@@ -1,6 +1,6 @@
 remote_theme: pmarsceill/just-the-docs
 # color_scheme: dark
-baseurl: /wip-bcx-validation-doc
+baseurl: /doc-bcx-validation
 search_enabled: true
 title: bcx-validation
 aux_links:
