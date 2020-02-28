@@ -20,7 +20,7 @@ To use `isTrue` `validator`, you write a rule like this:
 {validate: 'isTrue'}
 ```
 
-Every `bcx-validation` rule is an object with reserved key `validate`, the value of the key is a string identifying an known `validator` to your validation instance.
+Every `bcx-validation` rule is an object with reserved key `validate`, the value of the key is a string identifying a known `validator` to your validation instance.
 
 > Note `isTrue` validator tests truthy of the value, empty string and number zero are false, but empty array/object are true.
 
