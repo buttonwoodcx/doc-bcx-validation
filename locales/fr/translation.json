@@ -1,7 +1,0 @@
-{
-  "name": "Nom",
-  "age": "Âge",
-  "save": "Enregistrer",
-  "must_not_be_empty": "ne doit pas être vide",
-  "must_be_at_least": "doit avoir au moins {{min}} ans"
-}
