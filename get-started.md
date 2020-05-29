@@ -19,7 +19,7 @@ npm i bcx-validation
 
 ## First Example
 
-<iframe style="width: 100%; height: 400px; border: 0;" loading="lazy" src="https://gist.dumber.app/?gist=a48ba81d75bf38457b19b7703ccafa3e&open=src%2Fsimple-form.js&open=src%2Fsimple-form.html"></iframe>
+<iframe style="width: 100%; height: 400px; border: 2px solid #343a40; border-radius: 3px;" loading="lazy" src="https://gist.dumber.app/?gist=a48ba81d75bf38457b19b7703ccafa3e&open=src%2Fsimple-form.js&open=src%2Fsimple-form.html"></iframe>
 
 The entry is the `Validation` class.
 
