@@ -48,6 +48,6 @@ In summary, for flexibility, we use transformer to accept rule not matching the 
 
 > When `bcx-validation` resolves a rule, it tests against all transformers before trying any validator implementations. That's how `{if: 'condition', validate: 'isTrue'}` is processed by `if` transformer first. If `bcx-validation` tries validators before transformers, `{if: 'condition', validate: 'isTrue'}` will be wrongly treated as "isTrue" validator with option "if" with static value "condition".
 
-> `switch` and `foreach` transformers are different, they are "readyToUse" transformer. As for now, we would not document how to implement a "readyToUse" transformer, it involves understanding how `bcx-validation` internally uses aurelia-binding scope. We will just document the usage of `switch` and `foreach` transformers, they are quite useful.
+> `switch` and `foreach` transformers are different, they are "readyToUse" transformer. As for now, we would not document how to implement a "readyToUse" transformer, it involves understanding how `bcx-validation` internally uses [contextual-proxy](https://github.com/3cp/contextual-proxy). We will just document the usage of `switch` and `foreach` transformers, they are quite useful.
 
 Let's move on to [the switch transformer](./switch-transformer).

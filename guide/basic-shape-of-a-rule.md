@@ -66,7 +66,7 @@ This looks better.
 
 > They are the key features to allow us to do [validator composition](./validator-composition).
 
-Look back on the value override, `"$value.length >= 8"`, this is processed by [bcx-expression-evaluator](https://github.com/buttonwoodcx/bcx-expression-evaluator), which uses exact same syntax as aurelia-binding provides. For users with some aurelia background, `$this` and `$parent` are special context variables you can use inside the expression. `bcx-validation` introduces more special context variables.
+Look back on the value override, `"$value.length >= 8"`, this is processed by [scoped-eval](https://github.com/3cp/scoped-eval). For users with some aurelia background, `$this` and `$parent` are special context variables you can use inside the expression. `bcx-validation` introduces more special context variables.
 
 Here `$value` is the first speical context variable that `bcx-validation` makes available to expression. `$value` represents the value ("lorem") being validated.
 
@@ -85,15 +85,13 @@ validation.validate('lorem', {validate: 'isTrue',
 
 > You might noticed the function we used for value override is not quite safe, when value is null/undefined, the above code raises exception on `value.length`. The safer way is to do `value => value && value.length >= 8`.
 
-> While you have to be careful to do not provide functions throws exception, `bcx-expression-evaluator` is quite safe, silent most of the time, `"$value.length >= 8"` never throws exception.
-
 > The full list of arguments of that function is `function(value, propertyPath, context, get)`. We only used the first `value` argument here. `propertyPath` and `context` are useful in [nest rule](./nested-rule), `get` is a function to get arbitrary expression value from current scope. In `bcx-validation`, no matter what you use function for, (to override value, to define raw validator, to provide a rule factory) they all have that same list of arguments, but there are different requirements on return value.
 
-If you are interested on using expression, please read through [bcx-expression-evaluator README](https://github.com/buttonwoodcx/bcx-expression-evaluator).
+If you are interested on using expression, please read through [scoped-eval README](https://github.com/3cp/scoped-eval).
 
 `bcx-validation` uses [lodash](https://github.com/lodash/lodash) extensively. For convenience, lodash is available as a helper to any expression used in `bcx-validation`. So instead of `"$value.length >= 8"`, you can also write `"_.size($value) >= 8"`.
 
-Let's look back on the message override again, the message you provided is actually evaluated by `bcx-expression-evaluator` in es6 string interpolation mode. `"must be at least 8 characters long"` is actually like es6 `` `must be at least 8 characters long` ``.
+Let's look back on the message override again, the message you provided is actually evaluated by `scoped-eval` in es6 string interpolation mode. `"must be at least 8 characters long"` is actually like es6 `` `must be at least 8 characters long` ``.
 
 It means you can do this:
 
@@ -125,8 +123,6 @@ validation.validate('abc', {validate: 'isTrue',
 ```
 
 When you use regex, it behaves as value override with function `value => /\d/.test(value)`.
-
-> The reason of specifically supporting regex in value override, is that `bcx-expression-evaluator` doesn't allow regex literal inside expression.
 
 > When use regex in value override, the returned value is either true or false. Use `isTrue` or `isFalse` validator with regex value override.
 

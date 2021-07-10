@@ -132,7 +132,7 @@ In the example in [get-started](../get-started), there is an interesting usage o
 
 If you use special option name `"min.bind"`, `bcx-validation` will evaluate expression `"ageLimit"` against current scope, then use the value (value is 21, as defined in parent context) as the option `"min"`'s value.
 
-> Note that we didn't use parent context explicitly in the expression. `"$parent.ageLimit"` works same, but since it's not ambiguous, `"ageLimit" works just fine. This is an aurelia-binding feature which `bcx-expression-evaluator` inherited.
+> Note that we didn't use parent context explicitly in the expression. `"$parent.ageLimit"` works same, but since it's not ambiguous, `"ageLimit" works just fine. This is an aurelia-binding feature which [contextual-proxy](https://github.com/3cp/contextual-proxy) inherited.
 
 > Note in error message override, `"$parent.name"` is needed since `"name"` is ambiguous. `"name"` will be resulted to current customer name.
 

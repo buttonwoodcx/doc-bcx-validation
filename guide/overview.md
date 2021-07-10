@@ -58,8 +58,6 @@ const rule = {
 }
 ```
 
-Notice we use [bcx-expression-evaluator](https://github.com/buttonwoodcx/bcx-expression-evaluator) in `number` validator's `min` option and error `message` override.
-
 The model object.
 
 ```js

@@ -60,7 +60,7 @@ validation.validate(model, rule);
 
 ## Special context variables introduced by foreach
 
-Underneath, for every item in the model array, `foreach` transformer creates new overrideContext (aurelia-binding concept) and add few special context variables.
+Underneath, for every item in the model array, `foreach` transformer creates new [contextual proxy](https://github.com/3cp/contextual-proxy) and add few special context variables.
 
 > Similar to what aurelia repeater does in html template.
 

@@ -8,7 +8,7 @@ parent: In-depth guide
 
 # Add helper for expression
 
-`bcx-validation` by default adds lodash as a helper to `bcx-expression-evaluator`, so you can use lodash in all expressions.
+`bcx-validation` by default adds lodash as a helper, so you can use lodash in all expressions.
 
 You can add your own helper.
 
