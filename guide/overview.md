@@ -18,7 +18,7 @@ Built by [BUTTONWOODCX](https://buttonwood.com.au), bcx-validation is another va
 
 Why not just use some existing validation tool?
 
-1. most validation tool thinks model is just key-val pairs. We want to validate complex object (a blueprint for cloud deployment). For instance, if cloud provider is AZURE, validates that all vms connected to a load balancer must be within same availablity set, no validation tool on the market is flexible enough to do this.
+1. most validation tool thinks model is just key-val pairs. We want to validate complex object (a blueprint for cloud deployment). For instance, if cloud provider is AZURE, validates that all vms connected to a load balancer must be within same availability set, no validation tool on the market is flexible enough to do this.
 
 2. we need to be able to describe validation rule in JSON, as all our business logic is delivered from backend to front-end. (function can still be used in many parts of the rule. Although BUTTONWOODCX mainly uses `bcx-validation`'s expression support, `bcx-validation` itself treats function and expression almost exchangeable.)
 

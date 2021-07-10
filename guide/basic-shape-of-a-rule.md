@@ -68,13 +68,13 @@ This looks better.
 
 Look back on the value override, `"$value.length >= 8"`, this is processed by [scoped-eval](https://github.com/3cp/scoped-eval). For users with some aurelia background, `$this` and `$parent` are special context variables you can use inside the expression. `bcx-validation` introduces more special context variables.
 
-Here `$value` is the first speical context variable that `bcx-validation` makes available to expression. `$value` represents the value ("lorem") being validated.
+Here `$value` is the first special context variable that `bcx-validation` makes available to expression. `$value` represents the value ("lorem") being validated.
 
 > Since we have not use any [nested rule](./nested-rule) here, both `$value` and `$this` means "lorem", you can use `"$this.length >= 8"` for value override, the result will be same. In nested rule usage, `$value` means the value of current property, `$this` means current context (the model has that property). We will explain it later.
 
 ### Override using function
 
-In Buttonwoodcx, we mainly use expression. But for most of users, if you don't need expression, you can supply function for value override.
+In BUTTONWOODCX, we mainly use expression. But for most of users, if you don't need expression, you can supply function for value override.
 
 ```js
 validation.validate('lorem', {validate: 'isTrue',
